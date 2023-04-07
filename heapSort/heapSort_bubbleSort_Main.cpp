@@ -38,12 +38,12 @@ int main()
     string case3 = "Random Input    ";
 
     // Input Files
-    string fileName1 = "./number-files/ten.txt";
-    string fileName2 = "./number-files/onehundred.txt";
-    string fileName3 = "./number-files/onethousand.txt";
-    string fileName4 = "./number-files/tenthousand.txt";
-    string fileName5 = "./number-files/fiftythousand.txt";
-    string fileName6 = "./number-files/onehundredthousand.txt";
+    string fileName1 = "./number_files/ten.txt";
+    string fileName2 = "./number_files/onehundred.txt";
+    string fileName3 = "./number_files/onethousand.txt";
+    string fileName4 = "./number_files/tenthousand.txt";
+    string fileName5 = "./number_files/fiftythousand.txt";
+    string fileName6 = "./number_files/onehundredthousand.txt";
 
     fstream file;   
 
