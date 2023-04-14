@@ -1,5 +1,5 @@
 // randomizeDataset.cpp
-// This program produces randomized datasets. 
+// This program produces randomized datasets.
 // The fastest and slowest datasets run are stored in min and max txt files respectively.
 
 #include <iostream>
@@ -36,7 +36,7 @@ void bubbleSort(int arr[], int size);
 
 void printArr(const int arr[], const int size);
 void randomArr(int arr[], const int size);
-double avgRunTimeHeapSort(const int arr[], int arrTemp[], const int size);
+double avgRunTime(const int arr[], int arrTemp[], const int size);
 void checkMax(const int arr[], int arrMax[], const int size, double runTime, double &max);
 void checkMin(const int arr[], int arrMin[], const int size, double runTime, double &in);
 
@@ -74,7 +74,7 @@ int main()
         for (size_t i = 0; i < 1000000; i++)
         {
             randomArr(arrTen, SIZE_TEN);
-            runTime = avgRunTimeHeapSort(arrTen, arrTenTemp, SIZE_TEN);
+            runTime = avgRunTime(arrTen, arrTenTemp, SIZE_TEN);
             checkMax(arrTen, arrTenMax, SIZE_TEN, runTime, max);
             checkMin(arrTen, arrTenMin, SIZE_TEN, runTime, min);
 
@@ -92,11 +92,11 @@ int main()
     if (retrieveData)
     {
         retrieveFromFile(arrTenMax, fileTenMax, SIZE_TEN);
-        runTime = avgRunTimeHeapSort(arrTenMax, arrTenTemp, SIZE_TEN);
+        runTime = avgRunTime(arrTenMax, arrTenTemp, SIZE_TEN);
         cout << "Max Runtime: " << runTime << endl;
 
         retrieveFromFile(arrTenMin, fileTenMin, SIZE_TEN);
-        runTime = avgRunTimeHeapSort(arrTenMin, arrTenTemp, SIZE_TEN);
+        runTime = avgRunTime(arrTenMin, arrTenTemp, SIZE_TEN);
         cout << "Min Runtime: " << runTime << endl;
     }
 
@@ -133,7 +133,7 @@ int main()
         for (size_t i = 0; i < 100000; i++)
         {
             randomArr(arrHundred, SIZE_HUNDRED);
-            runTime = avgRunTimeHeapSort(arrHundred, arrHundredTemp, SIZE_HUNDRED);
+            runTime = avgRunTime(arrHundred, arrHundredTemp, SIZE_HUNDRED);
             checkMax(arrHundred, arrHundredMax, SIZE_HUNDRED, runTime, max);
             checkMin(arrHundred, arrHundredMin, SIZE_HUNDRED, runTime, min);
 
@@ -153,15 +153,15 @@ int main()
         storeInFile(arrHundredMin, fileHundredMin, SIZE_HUNDRED);
     }
 
-    retrieveData = true;
+    retrieveData = false;
     if (retrieveData)
     {
         // retrieveFromFile(arrHundredMax, fileHundredMax, SIZE_HUNDRED);
-        runTime = avgRunTimeHeapSort(arrHundredMax, arrHundredTemp, SIZE_HUNDRED);
+        runTime = avgRunTime(arrHundredMax, arrHundredTemp, SIZE_HUNDRED);
         cout << "Max Runtime: " << runTime << endl;
 
         // retrieveFromFile(arrHundredMin, fileHundredMin, SIZE_HUNDRED);
-        runTime = avgRunTimeHeapSort(arrHundredMin, arrHundredTemp, SIZE_HUNDRED);
+        runTime = avgRunTime(arrHundredMin, arrHundredTemp, SIZE_HUNDRED);
         cout << "Min Runtime: " << runTime << endl;
     }
 
@@ -179,13 +179,13 @@ int main()
     for (size_t i = 0; i < SIZE_THOUSAND; i++)
     {
         arrThousandMin[i] = SIZE_THOUSAND - i;
-        //cout << arrThousandMin[i] << endl;
+        // cout << arrThousandMin[i] << endl;
     }
 
     for (size_t i = 0; i < SIZE_THOUSAND; i++)
     {
         arrThousandMax[i] = i + 1;
-        //cout << arrThousandMin[i] << endl;
+        // cout << arrThousandMin[i] << endl;
     }
 
     min = DBL_MAX;
@@ -198,7 +198,7 @@ int main()
         for (size_t i = 0; i < 10000; i++)
         {
             randomArr(arrThousand, SIZE_THOUSAND);
-            runTime = avgRunTimeHeapSort(arrThousand, arrThousandTemp, SIZE_THOUSAND);
+            runTime = avgRunTime(arrThousand, arrThousandTemp, SIZE_THOUSAND);
 
             checkMax(arrThousand, arrThousandMax, SIZE_THOUSAND, runTime, max);
             checkMin(arrThousand, arrThousandMin, SIZE_THOUSAND, runTime, min);
@@ -217,11 +217,11 @@ int main()
     if (retrieveData)
     {
         retrieveFromFile(arrThousandMax, fileThousandMax, SIZE_THOUSAND);
-        runTime = avgRunTimeHeapSort(arrThousandMax, arrThousandTemp, SIZE_THOUSAND);
+        runTime = avgRunTime(arrThousandMax, arrThousandTemp, SIZE_THOUSAND);
         cout << "Max Run Time: " << runTime << endl;
 
         retrieveFromFile(arrThousandMin, fileThousandMin, SIZE_THOUSAND);
-        runTime = avgRunTimeHeapSort(arrThousandMin, arrThousandTemp, SIZE_THOUSAND);
+        runTime = avgRunTime(arrThousandMin, arrThousandTemp, SIZE_THOUSAND);
         cout << "Min Run Time: " << runTime << endl;
     }
 
@@ -239,13 +239,13 @@ int main()
     for (size_t i = 0; i < SIZE_TEN_THOUSAND; i++)
     {
         arrTenThousandMin[i] = SIZE_TEN_THOUSAND - i;
-        //cout << arrTenThousandMin[i] << endl;
+        // cout << arrTenThousandMin[i] << endl;
     }
 
     for (size_t i = 0; i < SIZE_TEN_THOUSAND; i++)
     {
         arrTenThousandMax[i] = i + 1;
-        //cout << arrTenThousandMin[i] << endl;
+        // cout << arrTenThousandMin[i] << endl;
     }
 
     min = DBL_MAX;
@@ -258,7 +258,7 @@ int main()
         for (size_t i = 0; i < 10000; i++)
         {
             randomArr(arrTenThousand, SIZE_TEN_THOUSAND);
-            runTime = avgRunTimeHeapSort(arrTenThousand, arrTenThousandTemp, SIZE_TEN_THOUSAND);
+            runTime = avgRunTime(arrTenThousand, arrTenThousandTemp, SIZE_TEN_THOUSAND);
 
             checkMax(arrTenThousand, arrTenThousandMax, SIZE_TEN_THOUSAND, runTime, max);
             checkMin(arrTenThousand, arrTenThousandMin, SIZE_TEN_THOUSAND, runTime, min);
@@ -273,22 +273,21 @@ int main()
         storeInFile(arrTenThousandMin, fileTenThousandMin, SIZE_TEN_THOUSAND);
     }
 
-    retrieveData = true;
+    retrieveData = false;
     if (retrieveData)
     {
         retrieveFromFile(arrTenThousandMax, fileTenThousandMax, SIZE_TEN_THOUSAND);
-        runTime = avgRunTimeHeapSort(arrTenThousandMax, arrTenThousandTemp, SIZE_TEN_THOUSAND);
+        runTime = avgRunTime(arrTenThousandMax, arrTenThousandTemp, SIZE_TEN_THOUSAND);
         cout << "Max Run Time: " << runTime << endl;
 
         // retrieveFromFile(arrTenThousandMin, fileTenThousandMin, SIZE_TEN_THOUSAND);
-        runTime = avgRunTimeHeapSort(arrTenThousandMin, arrTenThousandTemp, SIZE_TEN_THOUSAND);
+        runTime = avgRunTime(arrTenThousandMin, arrTenThousandTemp, SIZE_TEN_THOUSAND);
         cout << "Min Run Time: " << runTime << endl;
     }
 
-
     // Fifty Thousand-----------------------------------------------
 
-    string filefiftyThousand = "./number_files/fiftyThousand/fiftyThousandAvg.txt";
+    string filefiftyThousandAvg = "./number_files/fiftyThousand/fiftyThousandAvg.txt";
     string filefiftyThousandMax = "./number_files/fiftyThousand/fiftyThousandMax.txt";
     string filefiftyThousandMin = "./number_files/fiftyThousand/fiftyThousandMin.txt";
 
@@ -300,13 +299,13 @@ int main()
     for (size_t i = 0; i < SIZE_FIFTY_THOUSAND; i++)
     {
         arrfiftyThousandMin[i] = SIZE_FIFTY_THOUSAND - i;
-        //cout << arrfiftyThousandMin[i] << endl;
+        // cout << arrfiftyThousandMin[i] << endl;
     }
 
     for (size_t i = 0; i < SIZE_FIFTY_THOUSAND; i++)
     {
         arrfiftyThousandMax[i] = i + 1;
-       // cout << arrfiftyThousandMin[i] << endl;
+        // cout << arrfiftyThousandMin[i] << endl;
     }
 
     min = DBL_MAX;
@@ -316,10 +315,10 @@ int main()
     genNewData = false;
     if (genNewData)
     {
-        for (size_t i = 0; i < 5; i++)
+        for (size_t i = 0; i < 5000; i++)
         {
             randomArr(arrfiftyThousand, SIZE_FIFTY_THOUSAND);
-            runTime = avgRunTimeHeapSort(arrfiftyThousand, arrfiftyThousandTemp, SIZE_FIFTY_THOUSAND);
+            runTime = avgRunTime(arrfiftyThousand, arrfiftyThousandTemp, SIZE_FIFTY_THOUSAND);
 
             checkMax(arrfiftyThousand, arrfiftyThousandMax, SIZE_FIFTY_THOUSAND, runTime, max);
             checkMin(arrfiftyThousand, arrfiftyThousandMin, SIZE_FIFTY_THOUSAND, runTime, min);
@@ -334,18 +333,28 @@ int main()
         storeInFile(arrfiftyThousandMin, filefiftyThousandMin, SIZE_FIFTY_THOUSAND);
     }
 
-    retrieveData = true;
+
+    retrieveData = false;
     if (retrieveData)
     {
-        //retrieveFromFile(arrfiftyThousandMax, filefiftyThousandMax, SIZE_FIFTY_THOUSAND);
-        runTime = avgRunTimeHeapSort(arrfiftyThousandMax, arrfiftyThousandTemp, SIZE_FIFTY_THOUSAND);
+        retrieveFromFile(arrfiftyThousandMax, filefiftyThousandMax, SIZE_FIFTY_THOUSAND);
+        runTime = avgRunTime(arrfiftyThousandMax, arrfiftyThousandTemp, SIZE_FIFTY_THOUSAND);
         cout << "Max Run Time: " << runTime << endl;
 
-        //retrieveFromFile(arrfiftyThousandMin, filefiftyThousandMin, SIZE_FIFTY_THOUSAND);
-        runTime = avgRunTimeHeapSort(arrfiftyThousandMin, arrfiftyThousandTemp, SIZE_FIFTY_THOUSAND);
+        retrieveFromFile(arrfiftyThousandMin, filefiftyThousandMin, SIZE_FIFTY_THOUSAND);
+        runTime = avgRunTime(arrfiftyThousandMin, arrfiftyThousandTemp, SIZE_FIFTY_THOUSAND);
         cout << "Min Run Time: " << runTime << endl;
+
+        // // Set Average
+        // randomArr(arrfiftyThousand, SIZE_FIFTY_THOUSAND);
+        // storeInFile(arrfiftyThousand, filefiftyThousandAvg, SIZE_FIFTY_THOUSAND);
+
+        retrieveFromFile(arrfiftyThousand, filefiftyThousandAvg, SIZE_FIFTY_THOUSAND);
+        runTime = avgRunTime(arrfiftyThousand, arrfiftyThousandTemp, SIZE_FIFTY_THOUSAND);
+        cout << "Avg Run Time: " << runTime << endl;
     }
 
+    cout << "Completed:" << endl;
     // // Hundred Thousand-----------------------------------------------
 
     // string fileHundredThousand = "./number_files/hundredThousand/hundredThousandAvg.txt";
@@ -379,7 +388,7 @@ int main()
     //     for (size_t i = 0; i < 5; i++)
     //     {
     //         randomArr(arrHundredThousand, SIZE_HUNDRED_THOUSAND);
-    //         runTime = avgRunTimeHeapSort(arrHundredThousand, arrHundredThousandTemp, SIZE_HUNDRED_THOUSAND);
+    //         runTime = avgRunTime(arrHundredThousand, arrHundredThousandTemp, SIZE_HUNDRED_THOUSAND);
 
     //         checkMax(arrHundredThousand, arrHundredThousandMax, SIZE_HUNDRED_THOUSAND, runTime, max);
     //         checkMin(arrHundredThousand, arrHundredThousandMin, SIZE_HUNDRED_THOUSAND, runTime, min);
@@ -398,14 +407,13 @@ int main()
     // if (retrieveData)
     // {
     //     retrieveFromFile(arrHundredThousandMax, fileHundredThousandMax, SIZE_HUNDRED_THOUSAND);
-    //     runTime = avgRunTimeHeapSort(arrHundredThousandMax, arrHundredThousandTemp, SIZE_HUNDRED_THOUSAND);
+    //     runTime = avgRunTime(arrHundredThousandMax, arrHundredThousandTemp, SIZE_HUNDRED_THOUSAND);
     //     cout << "Max Run Time: " << runTime << endl;
 
     //     retrieveFromFile(arrHundredThousandMin, fileHundredThousandMin, SIZE_HUNDRED_THOUSAND);
-    //     runTime = avgRunTimeHeapSort(arrHundredThousandMin, arrHundredThousandTemp, SIZE_HUNDRED_THOUSAND);
+    //     runTime = avgRunTime(arrHundredThousandMin, arrHundredThousandTemp, SIZE_HUNDRED_THOUSAND);
     //     cout << "Min Run Time: " << runTime << endl;
     // }
-
 
     cin.get();
     return 0;
@@ -435,7 +443,7 @@ void randomArr(int arr[], const int size)
     shuffle(arr, arr + size, g);
 }
 
-double avgRunTimeHeapSort(int const arr[], int tempArr[], const int size)
+double avgRunTime(int const arr[], int tempArr[], const int size)
 {
     Heap H;
     int trials = 200;
