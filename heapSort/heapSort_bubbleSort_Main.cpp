@@ -5,6 +5,8 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
+#include <random>
+#include <array>
 #include <chrono>
 
 using namespace std::chrono;
@@ -28,8 +30,14 @@ public:
 void runTrialHeapSort(int arr[], int size, fstream& file, string name);
 void runTrialBubbleSort(int arr[], int size, fstream& file, string name);
 void bubbleSort( int arr[], int size); 
+ 
+// Creates a random array.
+void randomArr(int arr[], int size);
 
-
+// 
+double testArr(int arr[], int arrMax[], int arrMin[], int size);
+     
+const int TEN = 10;
 int main()
 {
 
@@ -45,195 +53,33 @@ int main()
     string fileName5 = "./number_files/fiftythousand.txt";
     string fileName6 = "./number_files/onehundredthousand.txt";
 
-    fstream file;   
+    fstream file;
 
+    int arrTen[TEN], arrTenMax[TEN], arrTenMin[TEN];
 
-    // Heap Sort ------------------------------------------------------------
     
-    cout << "Heap Sort run times: " << endl << endl;
-
-
-    // Heap Sort--Ten Elements
-
-    file.open(fileName1);
-    int size = 10;      // Number of elements imported from file.
-    int arrTen[10];     // Heap of size 10.
-
-    cout << "Ten Elements: " << endl;
-    runTrialHeapSort(arrTen, size, file, case1); // Ascending
-    runTrialHeapSort(arrTen, size, file, case2); // Descending
-    runTrialHeapSort(arrTen, size, file, case3); // Random
-    cout << endl;
-    
-    file.close();
-
-
-    // Heap Sort--One Hundred Elements
-
-    file.open(fileName2);
-    int arrHundred[100];     // Heap of size 100.
-    size = 100;              // Number of elements imported from file.
-
-    cout << "One Hundred Elements: " << endl;
-    runTrialHeapSort(arrHundred, size, file, case1); // Ascending
-    runTrialHeapSort(arrHundred, size, file, case2); // Descending
-    runTrialHeapSort(arrHundred, size, file, case3); // Random
-    cout << endl;
-
-    file.close();
-
-
-    // Heap Sort--One Thousand Elements
-
-    file.open(fileName3);
-    int arrThousand[1000];     // Heap of size 1,000.
-    size = 1000;               // Number of elements imported from file.
-
-    cout << "One Thousand Elements: " << endl;
-    runTrialHeapSort(arrThousand, size, file, case1); // Ascending
-    runTrialHeapSort(arrThousand, size, file, case2); // Descending
-    runTrialHeapSort(arrThousand, size, file, case3); // Random
-    cout << endl;
-
-    file.close();
-
-
-    // Heap Sort--Ten Thousand Elements
-
-    file.open(fileName4);
-    int arrTenThousand[10000];      // Heap of size 10,000.
-    size = 10000;                   // Number of elements imported from file.
-
-    cout << "Ten Thousand Elements: "  << endl;
-    runTrialHeapSort(arrTenThousand, size, file, case1); // Ascending
-    runTrialHeapSort(arrTenThousand, size, file, case2); // Descending
-    runTrialHeapSort(arrTenThousand, size, file, case3); // Random
-    cout << endl;
-
-    file.close();
-
-
-    // Heap Sort--Fifty Thousand Elements
-
-    file.open(fileName5);
-    int arrFiftyThousand[50000];    // Heap of size 50,000.
-    size = 50000;                   // Number of elements imported from file.
-
-    cout << "Fifty Thousand Elements: "  << endl;
-    runTrialHeapSort(arrFiftyThousand, size, file, case1); // Ascending
-    runTrialHeapSort(arrFiftyThousand, size, file, case2); // Descending
-    runTrialHeapSort(arrFiftyThousand, size, file, case3); // Random
-    cout << endl;
-
-    file.close();
-
-
-    // Heap Sort--One Hundred Thousand Elements
-
-    file.open(fileName6);
-    int arrHundredThousand[100000];     // Heap of size 100,000.
-    size = 100000;                      // Number of elements imported from file.
-
-    cout << "Hundred Thousand Elements: " << endl;
-    runTrialHeapSort(arrHundredThousand, size, file, case1); // Ascending
-    runTrialHeapSort(arrHundredThousand, size, file, case2); // Descending
-    runTrialHeapSort(arrHundredThousand, size, file, case3); // Random
-    cout << endl << endl;
-
-    file.close();
-
-
-
-    // Bubble Sort ------------------------------------------------------------
-
-    cout << "Bubble Sort run times: " << endl << endl;
-
-   // Bubble Sort--Ten Elements.
-
-    file.open(fileName1);
-    size = 10;              // Number of elements imported from file.
-
-    cout << "Ten Elements: " << endl;
-    runTrialBubbleSort(arrTen, size, file, case1); // Ascending
-    runTrialBubbleSort(arrTen, size, file, case2); // Descending
-    runTrialBubbleSort(arrTen, size, file, case3); // Random
-    cout << endl;
-    
-    file.close();
-    
-
-    // Bubble Sort--One Hundred Elements.
-
-    file.open(fileName2);
-    size = 100;              // Number of elements imported from file.
-
-    cout << "One Hundred Elements: " << endl;
-    runTrialBubbleSort(arrHundred, size, file, case1); // Ascending
-    runTrialBubbleSort(arrHundred, size, file, case2); // Descending
-    runTrialBubbleSort(arrHundred, size, file, case3); // Random
-    cout << endl;
-    
-    file.close();
-
-
-    // Bubble Sort--One Thousand Elements.
-
-    file.open(fileName3);
-    size = 1000;              // Number of elements imported from file.
-
-    cout << "One Thousand Elements: " << endl;
-    runTrialBubbleSort(arrThousand, size, file, case1); // Ascending
-    runTrialBubbleSort(arrThousand, size, file, case2); // Descending
-    runTrialBubbleSort(arrThousand, size, file, case3); // Random
-    cout << endl;
-    
-    file.close();
-
-
-     // Bubble Sort--Ten Thousand Elements.
-
-    file.open(fileName4);
-    size = 10000;              // Number of elements imported from file.
-
-    cout << "Ten Thousand Elements: " << endl;
-    runTrialBubbleSort(arrTenThousand, size, file, case1); // Ascending
-    runTrialBubbleSort(arrTenThousand, size, file, case2); // Descending
-    runTrialBubbleSort(arrTenThousand, size, file, case3); // Random
-    cout << endl;
-    
-    file.close();
-
-
-     // Bubble Sort--Fifty Thousand Elements.
-
-    file.open(fileName5);
-    size = 50000;              // Number of elements imported from file.
-
-    cout << "Fifty Thousand Elements: " << endl;
-    runTrialBubbleSort(arrFiftyThousand, size, file, case1); // Ascending
-    runTrialBubbleSort(arrFiftyThousand, size, file, case2); // Descending
-    runTrialBubbleSort(arrFiftyThousand, size, file, case3); // Random
-    cout << endl;
-    
-    file.close();
-
-
-     // Bubble Sort--One Hundred Thousand Elements.
-
-    file.open(fileName6);
-    size = 100000;              // Number of elements imported from file.
-
-    cout << "One Hundred Thousand Elements: " << endl;
-    runTrialBubbleSort(arrHundredThousand, size, file, case1); // Ascending
-    runTrialBubbleSort(arrHundredThousand, size, file, case2); // Descending
-    runTrialBubbleSort(arrHundredThousand, size, file, case3); // Random
-    cout << endl;
-    
-    file.close();
 
 
     cin.get();
     return 0;
+}
+
+// Local Functions-------------------------------------------------------------------
+
+// Stores random integers in an array. Integers range from 1 to size. Integers do not repeat.
+void randomArr(int arr[], int size)
+{
+    random_device rd;
+    mt19937 eng(rd());
+    uniform_int_distribution<> distr(1, size);
+    
+    for (int i = 0; i < size; i++) 
+        arr[i] = distr(eng);  
+}
+
+double testArr(int arr[], int arrMax[], int arrMin[], int size)
+{
+    
 }
 
 // Read a list of elements from a file, then use heapSort() to sort the elements. 
@@ -302,6 +148,8 @@ void bubbleSort(int arr[], int size)
         }
     }
 }
+
+// Heap---------------------------------------------------------------
 
 // Print the heap.
 void Heap::printArray(int arr[], int heapSize)
