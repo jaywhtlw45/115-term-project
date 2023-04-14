@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 #include <random>
+#include <float.h>
 #include <algorithm>
 #include <array>
 #include <chrono>
@@ -36,78 +37,158 @@ void printArr(const int arr[], const int size);
 void randomArr(int arr[], const int size);
 double avgRunTimeHeapSort(const int arr[], int arrTemp[], const int size);
 void checkMax(const int arr[], int arrMax[], const int size, double runTime, double &max);
-void storeInFile(const int arrMax[], string fileMax, const int size);
-void retrieveFromFile(const int arr[], string file, const int size);
+void checkMin(const int arr[], int arrMin[], const int size, double runTime, double &in);
+
+void storeInFile(const int arr[], string fileName, const int size);
+void retrieveFromFile(int arr[], string fileName, const int size);
 
 const int SIZE_TEN = 10;
+SIZE_HUNDRED = 100;
 const int SIZE_TEN_THOUSAND = 10000;
 int main()
-{
+{  
 
-    string case1 = "Ascending Input ";
-    string case2 = "Descending Input";
-    string case3 = "Random Input    ";
 
-    // Input Files
-    string fileTen = "./number_files/tenTemp.txt";
-    string fileTenMax = "./number_files/tenMax.txt";
-    string fileTenMin = "./number_files/tenMin.txt";
 
-    string fileTenThousand = "./number_files/tenThousandTemp.txt";
-    string fileTenThousandMax = "./number_files/tenThousandMax.txt";
-    string fileTenThousandMin = "./number_files/tenThousandMin.txt";
-
-    string fileName2 = "./number_files/onehundred.txt";
+    
     string fileName3 = "./number_files/onethousand.txt";
     string fileName4 = "./number_files/tenthousand.txt";
     string fileName5 = "./number_files/fiftythousand.txt";
     string fileName6 = "./number_files/onehundredthousand.txt";
 
+   // Ten------------------------------------------------------
+
+    string fileTen = "./number_files/tenTemp.txt";
+    string fileTenMax = "./number_files/tenMax.txt";
+    string fileTenMin = "./number_files/tenMin.txt";
+
+    int arrTen[SIZE_TEN] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int arrTenMax[SIZE_TEN];
+    int arrTenMin[SIZE_TEN];
+    int arrTenTemp[SIZE_TEN];
+
+    double min = DBL_MAX;
+    double runTime = 0;
+    double max = 0;
+
+    bool genNewData = false;
+    if (genNewData)
+    {
+        for (size_t i = 0; i < 10000; i++)
+        {
+            randomArr(arrTen, SIZE_TEN);
+            runTime = avgRunTimeHeapSort(arrTen, arrTenTemp, SIZE_TEN);
+            checkMax(arrTen, arrTenMax, SIZE_TEN, runTime, max);
+            checkMin(arrTen, arrTenMin, SIZE_TEN, runTime, min);
+
+            cout << i << endl;
+            cout << "runtimeloop " << runTime << endl;
+            cout << "max " << max << endl;
+            cout << "min " << min << endl;
+        }
+
+        storeInFile(arrTenMax, fileTenMax, SIZE_TEN);
+        storeInFile(arrTenMin, fileTenMin, SIZE_TEN);
+    }
+
+    bool retrieveData = true;
+    if (retrieveData)
+    {
+        retrieveFromFile(arrTenMax, fileTenMax, SIZE_TEN_THOUSAND);
+        runTime = avgRunTimeHeapSort(arrTenMax, arrTenTemp, SIZE_TEN);
+        cout << "Max Runtime: " << runTime << endl;
+
+        // retrieveFromFile(arrTenMin, fileTenMin, SIZE_TEN_THOUSAND);
+        runTime = avgRunTimeHeapSort(arrTenMin, arrTenTemp, SIZE_TEN);
+        cout << "Min Runtime: " << runTime << endl;
+    }
+
     // Ten Thousand-----------------------------------------------
+
+    string fileTenThousand = "./number_files/tenThousandTemp.txt";
+    string fileTenThousandMax = "./number_files/tenThousandMax.txt";
+    string fileTenThousandMin = "./number_files/tenThousandMin.txt";
+
     int arrTenThousand[SIZE_TEN_THOUSAND];
     int arrTenThousandTemp[SIZE_TEN_THOUSAND];
     int arrTenThousandMax[SIZE_TEN_THOUSAND];
     int arrTenThousandMin[SIZE_TEN_THOUSAND];
 
-    double min = 0;
-    double runTime = 0;
-    double max = 0;
+     min = DBL_MAX;
+    runTime = 0;
+    max = 0;
 
-    for (size_t i = 0; i < 5000; i++)
+    genNewData = false;
+    if (genNewData)
     {
-        randomArr(arrTenThousand, SIZE_TEN_THOUSAND);
-        runTime = avgRunTimeHeapSort(arrTenThousand, arrTenThousandTemp, SIZE_TEN_THOUSAND);
-        checkMax(arrTenThousand, arrTenThousandMax, SIZE_TEN_THOUSAND, runTime, max);
-        cout << i << endl;
-        cout << max << endl;
+        for (size_t i = 0; i < 2000; i++)
+        {
+            randomArr(arrTenThousand, SIZE_TEN_THOUSAND);
+            runTime = avgRunTimeHeapSort(arrTenThousand, arrTenThousandTemp, SIZE_TEN_THOUSAND);
+            checkMax(arrTenThousand, arrTenThousandMax, SIZE_TEN_THOUSAND, runTime, max);
+            cout << i << endl;
+            cout << " max: " << max << endl;
+            cout << "run time: " << runTime << endl;
+        }
+
+        storeInFile(arrTenThousandMax, fileTenThousandMax, SIZE_TEN_THOUSAND);
+
+        cout << "Max time: " << max << " seconds" << endl;
     }
 
-    storeInFile(arrTenThousandMax, fileTenThousandMax, SIZE_TEN_THOUSAND);
+    retrieveData = false;
+    if (retrieveData)
+    {
+        retrieveFromFile(arrTenThousandMax, fileTenThousandMax, SIZE_TEN_THOUSAND);
+        runTime = avgRunTimeHeapSort(arrTenThousandMax, arrTenThousandTemp, SIZE_TEN_THOUSAND);
+        cout << "runtime: " << runTime << endl;
+    }
 
-    cout << "Max time: " << max << " seconds" << endl;
 
-    // Ten------------------------------------------------------
-    // int arrTenTemp[SIZE_TEN], arrTenMax[SIZE_TEN], arrTenMin[SIZE_TEN];
-    // int arrTen[SIZE_TEN] = {1, 10, 8, 7, 3, 6, 9, 5, 4, 2};
-    // min = 0;
-    // runTime = 0;
-    // max = 0;
+    // Hundred------------------------------------------------------\
 
-    // for (size_t i = 0; i < 100000; i++)
-    // {
-    //     randomArr(arrTen, SIZE_TEN);
-    //     runTime = avgRunTimeHeapSort(arrTen, arrTenTemp, SIZE_TEN);
-    //     checkMax(arrTen, arrTenMax, SIZE_TEN, runTime, max);
-    // }
+    string fileHundred = "./number_files/onehundred.txt";
 
-    // storeInFile(arrTenMax, fileTenMax, SIZE_TEN);
+    int arrHundred[SIZE_HUNDRED] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int arrTenMax[SIZE_HUNDRED];
+    int arrTenMin[SIZE_HUNDRED];
+    int arrTenTemp[SIZE_HUNDRED];
 
-    
-        
-    // // runTime = avgRunTimeHeapSort(arrTen, arrTenTemp, SIZE_TEN);
-    // // cout << "runtime: " << runTime << endl;
+    min = DBL_MAX;
+    runTime = 0;
+    max = 0;
 
-    // cout << "Max time: " << max << " seconds" << endl;
+    genNewData = false;
+    if (genNewData)
+    {
+        for (size_t i = 0; i < 10000; i++)
+        {
+            randomArr(arrTen, SIZE_HUNDRED);
+            runTime = avgRunTimeHeapSort(arrTen, arrTenTemp, SIZE_HUNDRED);
+            checkMax(arrTen, arrTenMax, SIZE_HUNDRED, runTime, max);
+            checkMin(arrTen, arrTenMin, SIZE_HUNDRED, runTime, min);
+
+            cout << i << endl;
+            cout << "runtimeloop " << runTime << endl;
+            cout << "max " << max << endl;
+            cout << "min " << min << endl;
+        }
+
+        storeInFile(arrTenMax, fileTenMax, SIZE_HUNDRED);
+        storeInFile(arrTenMin, fileTenMin, SIZE_HUNDRED);
+    }
+
+    retrieveData = true;
+    if (retrieveData)
+    {
+        retrieveFromFile(arrTenMax, fileTenMax, SIZE_TEN_THOUSAND);
+        runTime = avgRunTimeHeapSort(arrTenMax, arrTenTemp, SIZE_TEN);
+        cout << "Max Runtime: " << runTime << endl;
+
+        // retrieveFromFile(arrTenMin, fileTenMin, SIZE_TEN_THOUSAND);
+        runTime = avgRunTimeHeapSort(arrTenMin, arrTenTemp, SIZE_TEN);
+        cout << "Min Runtime: " << runTime << endl;
+    }
 
     cin.get();
     return 0;
@@ -131,8 +212,8 @@ void randomArr(int arr[], const int size)
     random_device rd;
     mt19937 g(rd());
 
-     for (size_t i = 0; i < size; i++)
-        arr[i] = i+1;
+    for (size_t i = 0; i < size; i++)
+        arr[i] = i + 1;
 
     shuffle(arr, arr + 10, g);
 }
@@ -140,7 +221,7 @@ void randomArr(int arr[], const int size)
 double avgRunTimeHeapSort(int const arr[], int tempArr[], const int size)
 {
     Heap H;
-    int trials = 5;
+    int trials = 1000;
     double totalTime = 0;
     double time;
 
@@ -155,7 +236,7 @@ double avgRunTimeHeapSort(int const arr[], int tempArr[], const int size)
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<nanoseconds>(stop - start);
 
-        totalTime = duration_cast<std::chrono::duration<double>>(duration).count();
+        totalTime += duration_cast<std::chrono::duration<double>>(duration).count();
 
         for (size_t i = 0; i < size; i++)
             tempArr[i] = arr[i];
@@ -166,7 +247,6 @@ double avgRunTimeHeapSort(int const arr[], int tempArr[], const int size)
 
 void checkMax(const int arr[], int arrMax[], const int size, double runTime, double &max)
 {
-    // If run time is less than the previous max
     if (runTime > max)
     {
         max = runTime;
@@ -176,10 +256,21 @@ void checkMax(const int arr[], int arrMax[], const int size, double runTime, dou
     }
 }
 
-void storeInFile(const int arrMax[], string fileMax, const int size)
+void checkMin(const int arr[], int arrMin[], const int size, double runTime, double &min)
+{
+    if (runTime < min)
+    {
+        min = runTime;
+
+        for (size_t i = 0; i < size; i++)
+            arrMin[i] = arr[i];
+    }
+}
+
+void storeInFile(const int arr[], string fileName, const int size)
 {
     ofstream file;
-    file.open(fileMax);
+    file.open(fileName);
 
     if (!file.is_open())
     {
@@ -187,26 +278,23 @@ void storeInFile(const int arrMax[], string fileMax, const int size)
         return;
     }
 
-    for (int i = 0; i < 10; i++)
-    {
-        file << arrMax[i] << " ";
-    }
+    for (int i = 0; i < size; i++)
+        file << arr[i] << " ";
 
     file.close();
 }
 
-void retrieveFromFile(const int arr[], string fileName, const int size)
+void retrieveFromFile(int arr[], string fileName, const int size)
 {
     ifstream file;
     file.open(fileName);
+    string fileInput;
 
     for (size_t i = 0; i < size; i++)
     {
-        file >> arr[i];
+        file >> fileInput;
+        arr[i] = stoi(fileInput);
     }
-
-    file.close();
-    
 }
 
 // Read a list of elements from a file, then use heapSort() to sort the elements.
@@ -407,7 +495,6 @@ void Heap::buildMaxHeap(int arr[], int heapSize)
         maxHeapify(arr, i, heapSize);
     }
 }
-
 
 // reference
 // https://stackoverflow.com/questions/25878202/generating-random-non-repeating-number-array-in-c
