@@ -31,12 +31,11 @@ void runTrialHeapSort(int arr[], int size, fstream& file, string name);
 void runTrialBubbleSort(int arr[], int size, fstream& file, string name);
 void bubbleSort( int arr[], int size); 
  
-// Creates a random array.
-void randomArr(int arr[], int size);
+void printArr(const int arr[], const int size);
+void randomArr(int arr[], const int size);
+double avgRunTimeHeapSort(const int arr[], int arrTemp[], const int size);
+void checkMax(const int arr[], int size, int runTime, string fileMax, int max);
 
-// 
-double testArr(int arr[], int arrMax[], int arrMin[], int size);
-     
 const int TEN = 10;
 int main()
 {
@@ -46,19 +45,22 @@ int main()
     string case3 = "Random Input    ";
 
     // Input Files
-    string fileName1 = "./number_files/ten.txt";
+    string fileTen = "./number_files/tenTemp.txt";
+    string fileTenMax = "./number_files/tenMax.txt";
+    string fileTenMin = "./number_files/tenMin.txt";
+
     string fileName2 = "./number_files/onehundred.txt";
     string fileName3 = "./number_files/onethousand.txt";
     string fileName4 = "./number_files/tenthousand.txt";
     string fileName5 = "./number_files/fiftythousand.txt";
     string fileName6 = "./number_files/onehundredthousand.txt";
 
-    fstream file;
+    int arrTen[TEN], arrTenTemp[TEN], arrTenMax[TEN], arrTenMin[TEN];
 
-    int arrTen[TEN], arrTenMax[TEN], arrTenMin[TEN];
-
+    double runTime, max, min = 0;
+    randomArr(arrTen, TEN);
+    runTime = avgRunTimeHeapSort(arrTen, arrTenTemp, TEN);
     
-
 
     cin.get();
     return 0;
@@ -67,7 +69,17 @@ int main()
 // Local Functions-------------------------------------------------------------------
 
 // Stores random integers in an array. Integers range from 1 to size. Integers do not repeat.
-void randomArr(int arr[], int size)
+void printArr(const int arr[], const int size)
+{
+    for (size_t i = 0; i < TEN; i++)
+    {
+        cout << arr[i] << " ";
+        if (i%10 == 19)
+            cout << endl;
+    }
+}
+
+void randomArr(int arr[], const int size)
 {
     random_device rd;
     mt19937 eng(rd());
@@ -77,10 +89,43 @@ void randomArr(int arr[], int size)
         arr[i] = distr(eng);  
 }
 
-double testArr(int arr[], int arrMax[], int arrMin[], int size)
+double avgRunTimeHeapSort(int const arr[], int tempArr[], const int size)
 {
+    Heap H;
+    int trials = 5;
+    double totalTime = 0;
+    double time;
+
+    for (size_t i = 0; i < size; i++)
+      tempArr[i] = arr[i];
+
+    for (size_t i = 0; i < trials; i++)
+    {
+    // Execute heapSort() and keep track of time.
+    auto start = high_resolution_clock::now();
+    H.heapSort(tempArr, size);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(stop - start);
+
+    totalTime = duration_cast<std::chrono::duration<double>>(duration).count();
+
+    for (size_t i = 0; i < size; i++)
+      tempArr[i] = arr[i];
+    }
     
+    return totalTime/trials;
 }
+
+void checkMax(const int arr[], int size, int runTime, string fileMax, int max){
+    
+    if (runTime < max)
+        return;
+    
+    ofstream file;
+    file.open(fileMax);
+
+}
+
 
 // Read a list of elements from a file, then use heapSort() to sort the elements. 
 void runTrialHeapSort(int arr[], int size, fstream& file, string name)
