@@ -102,7 +102,7 @@ int main()
 
     // Hundred------------------------------------------------------
 
-    string fileHundred = "./number_files/hundred/hundredAvg.txt";
+    string fileHundredAvg = "./number_files/hundred/hundredAvg.txt";
     string fileHundredMax = "./number_files/hundred/hundredMax.txt";
     string fileHundredMin = "./number_files/hundred/hundredMin.txt";
 
@@ -156,18 +156,29 @@ int main()
     retrieveData = false;
     if (retrieveData)
     {
-        // retrieveFromFile(arrHundredMax, fileHundredMax, SIZE_HUNDRED);
+        retrieveFromFile(arrHundredMax, fileHundredMax, SIZE_HUNDRED);
         runTime = avgRunTime(arrHundredMax, arrHundredTemp, SIZE_HUNDRED);
         cout << "Max Runtime: " << runTime << endl;
 
         // retrieveFromFile(arrHundredMin, fileHundredMin, SIZE_HUNDRED);
         runTime = avgRunTime(arrHundredMin, arrHundredTemp, SIZE_HUNDRED);
         cout << "Min Runtime: " << runTime << endl;
+        storeInFile(arrHundredMin, fileHundredMin, SIZE_HUNDRED);
+
+        // Set Average
+        randomArr(arrHundred, SIZE_HUNDRED);
+        storeInFile(arrHundred, fileHundredAvg, SIZE_HUNDRED);
+
+        retrieveFromFile(arrHundred, fileHundredAvg, SIZE_HUNDRED);
+        runTime = avgRunTime(arrHundred, arrHundredTemp, SIZE_HUNDRED);
+        cout << "Avg Run Time: " << runTime << endl;
+
+
     }
 
     // Thousand-----------------------------------------------
 
-    string fileThousand = "./number_files/thousand/thousandAvg.txt";
+    string fileThousandAvg = "./number_files/thousand/thousandAvg.txt";
     string fileThousandMax = "./number_files/thousand/thousandMax.txt";
     string fileThousandMin = "./number_files/thousand/thousandMin.txt";
 
@@ -195,7 +206,7 @@ int main()
     genNewData = false;
     if (genNewData)
     {
-        for (size_t i = 0; i < 10000; i++)
+        for (size_t i = 0; i < 100000; i++)
         {
             randomArr(arrThousand, SIZE_THOUSAND);
             runTime = avgRunTime(arrThousand, arrThousandTemp, SIZE_THOUSAND);
@@ -216,18 +227,26 @@ int main()
     retrieveData = false;
     if (retrieveData)
     {
-        retrieveFromFile(arrThousandMax, fileThousandMax, SIZE_THOUSAND);
+         retrieveFromFile(arrThousandMax, fileThousandMax, SIZE_THOUSAND);
         runTime = avgRunTime(arrThousandMax, arrThousandTemp, SIZE_THOUSAND);
         cout << "Max Run Time: " << runTime << endl;
 
-        retrieveFromFile(arrThousandMin, fileThousandMin, SIZE_THOUSAND);
+        // retrieveFromFile(arrThousandMin, fileThousandMin, SIZE_THOUSAND);
         runTime = avgRunTime(arrThousandMin, arrThousandTemp, SIZE_THOUSAND);
         cout << "Min Run Time: " << runTime << endl;
+
+        // Set Average
+        // randomArr(arrThousand, SIZE_THOUSAND);
+        // storeInFile(arrThousand, fileThousandAvg, SIZE_THOUSAND);
+
+        retrieveFromFile(arrThousand, fileThousandAvg, SIZE_THOUSAND);
+        runTime = avgRunTime(arrThousand, arrThousandTemp, SIZE_THOUSAND);
+        cout << "Avg Run Time: " << runTime << endl;
     }
 
     // Ten Thousand-----------------------------------------------
 
-    string fileTenThousand = "./number_files/tenThousand/tenThousandAvg.txt";
+    string fileTenThousandAvg = "./number_files/tenThousand/tenThousandAvg.txt";
     string fileTenThousandMax = "./number_files/tenThousand/tenThousandMax.txt";
     string fileTenThousandMin = "./number_files/tenThousand/tenThousandMin.txt";
 
@@ -280,9 +299,18 @@ int main()
         runTime = avgRunTime(arrTenThousandMax, arrTenThousandTemp, SIZE_TEN_THOUSAND);
         cout << "Max Run Time: " << runTime << endl;
 
-        // retrieveFromFile(arrTenThousandMin, fileTenThousandMin, SIZE_TEN_THOUSAND);
+        retrieveFromFile(arrTenThousandMin, fileTenThousandMin, SIZE_TEN_THOUSAND);
         runTime = avgRunTime(arrTenThousandMin, arrTenThousandTemp, SIZE_TEN_THOUSAND);
         cout << "Min Run Time: " << runTime << endl;
+
+        // Set Average
+        // randomArr(arrTenThousand, SIZE_TEN_THOUSAND);
+        // storeInFile(arrTenThousand, fileTenThousandAvg, SIZE_TEN_THOUSAND);
+
+        // retrieveFromFile(arrTenThousand, fileTenThousandAvg, SIZE_TEN_THOUSAND);
+        runTime = avgRunTime(arrTenThousand, arrTenThousandTemp, SIZE_TEN_THOUSAND);
+        cout << "Avg Run Time: " << runTime << endl;
+
     }
 
     // Fifty Thousand-----------------------------------------------
@@ -446,7 +474,7 @@ void randomArr(int arr[], const int size)
 double avgRunTime(int const arr[], int tempArr[], const int size)
 {
     Heap H;
-    int trials = 200;
+    int trials = 1000;
     double totalTime = 0;
 
     for (size_t i = 0; i < size; i++)
