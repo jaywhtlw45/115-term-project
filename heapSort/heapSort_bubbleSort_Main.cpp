@@ -33,9 +33,9 @@ void bubbleSort( int arr[], int size);
 int main()
 {
 
-    string case1 = "Ascending Input ";   
-    string case2 = "Descending Input";
-    string case3 = "Random Input    ";
+    string case1 = "Best Case:    ";   
+    string case2 = "Worst Case:   ";
+    string case3 = "Average Case: ";
 
     // Input Files
     string fileName1 = "./number_files/ten.txt";
@@ -60,9 +60,9 @@ int main()
     int arrTen[10];     // Heap of size 10.
 
     cout << "Ten Elements: " << endl;
-    runTrialHeapSort(arrTen, size, file, case1); // Ascending
-    runTrialHeapSort(arrTen, size, file, case2); // Descending
-    runTrialHeapSort(arrTen, size, file, case3); // Random
+    runTrialHeapSort(arrTen, size, file, case1); // Best Case
+    runTrialHeapSort(arrTen, size, file, case2); // Worst Case
+    runTrialHeapSort(arrTen, size, file, case3); // Average Case
     cout << endl;
     
     file.close();
@@ -75,9 +75,9 @@ int main()
     size = 100;              // Number of elements imported from file.
 
     cout << "One Hundred Elements: " << endl;
-    runTrialHeapSort(arrHundred, size, file, case1); // Ascending
-    runTrialHeapSort(arrHundred, size, file, case2); // Descending
-    runTrialHeapSort(arrHundred, size, file, case3); // Random
+    runTrialHeapSort(arrHundred, size, file, case1); // Best Case
+    runTrialHeapSort(arrHundred, size, file, case2); // Worst Case
+    runTrialHeapSort(arrHundred, size, file, case3); // Average Case
     cout << endl;
 
     file.close();
@@ -90,9 +90,9 @@ int main()
     size = 1000;               // Number of elements imported from file.
 
     cout << "One Thousand Elements: " << endl;
-    runTrialHeapSort(arrThousand, size, file, case1); // Ascending
-    runTrialHeapSort(arrThousand, size, file, case2); // Descending
-    runTrialHeapSort(arrThousand, size, file, case3); // Random
+    runTrialHeapSort(arrThousand, size, file, case1); // Best Case
+    runTrialHeapSort(arrThousand, size, file, case2); // Worst Case
+    runTrialHeapSort(arrThousand, size, file, case3); // Average Case
     cout << endl;
 
     file.close();
@@ -105,9 +105,9 @@ int main()
     size = 10000;                   // Number of elements imported from file.
 
     cout << "Ten Thousand Elements: "  << endl;
-    runTrialHeapSort(arrTenThousand, size, file, case1); // Ascending
-    runTrialHeapSort(arrTenThousand, size, file, case2); // Descending
-    runTrialHeapSort(arrTenThousand, size, file, case3); // Random
+    runTrialHeapSort(arrTenThousand, size, file, case1); // Best Case
+    runTrialHeapSort(arrTenThousand, size, file, case2); // Worst Case
+    runTrialHeapSort(arrTenThousand, size, file, case3); // Average Case
     cout << endl;
 
     file.close();
@@ -120,9 +120,9 @@ int main()
     size = 50000;                   // Number of elements imported from file.
 
     cout << "Fifty Thousand Elements: "  << endl;
-    runTrialHeapSort(arrFiftyThousand, size, file, case1); // Ascending
-    runTrialHeapSort(arrFiftyThousand, size, file, case2); // Descending
-    runTrialHeapSort(arrFiftyThousand, size, file, case3); // Random
+    runTrialHeapSort(arrFiftyThousand, size, file, case1); // Best Case
+    runTrialHeapSort(arrFiftyThousand, size, file, case2); // Worst Case
+    runTrialHeapSort(arrFiftyThousand, size, file, case3); // Average Case
     cout << endl;
 
     file.close();
@@ -135,9 +135,9 @@ int main()
     size = 100000;                      // Number of elements imported from file.
 
     cout << "Hundred Thousand Elements: " << endl;
-    runTrialHeapSort(arrHundredThousand, size, file, case1); // Ascending
-    runTrialHeapSort(arrHundredThousand, size, file, case2); // Descending
-    runTrialHeapSort(arrHundredThousand, size, file, case3); // Random
+    runTrialHeapSort(arrHundredThousand, size, file, case1); // Best Case
+    runTrialHeapSort(arrHundredThousand, size, file, case2); // Worst Case
+    runTrialHeapSort(arrHundredThousand, size, file, case3); // Average Case
     cout << endl << endl;
 
     file.close();
@@ -154,9 +154,9 @@ int main()
     size = 10;              // Number of elements imported from file.
 
     cout << "Ten Elements: " << endl;
-    runTrialBubbleSort(arrTen, size, file, case1); // Ascending
-    runTrialBubbleSort(arrTen, size, file, case2); // Descending
-    runTrialBubbleSort(arrTen, size, file, case3); // Random
+    runTrialBubbleSort(arrTen, size, file, case1); // Best Case
+    runTrialBubbleSort(arrTen, size, file, case2); // Worst Case
+    runTrialBubbleSort(arrTen, size, file, case3); // Average Case
     cout << endl;
     
     file.close();
@@ -168,9 +168,9 @@ int main()
     size = 100;              // Number of elements imported from file.
 
     cout << "One Hundred Elements: " << endl;
-    runTrialBubbleSort(arrHundred, size, file, case1); // Ascending
-    runTrialBubbleSort(arrHundred, size, file, case2); // Descending
-    runTrialBubbleSort(arrHundred, size, file, case3); // Random
+    runTrialBubbleSort(arrHundred, size, file, case1); // Best Case
+    runTrialBubbleSort(arrHundred, size, file, case2); // Worst Case
+    runTrialBubbleSort(arrHundred, size, file, case3); // Average Case
     cout << endl;
     
     file.close();
@@ -182,9 +182,9 @@ int main()
     size = 1000;              // Number of elements imported from file.
 
     cout << "One Thousand Elements: " << endl;
-    runTrialBubbleSort(arrThousand, size, file, case1); // Ascending
-    runTrialBubbleSort(arrThousand, size, file, case2); // Descending
-    runTrialBubbleSort(arrThousand, size, file, case3); // Random
+    runTrialBubbleSort(arrThousand, size, file, case1); // Best Case
+    runTrialBubbleSort(arrThousand, size, file, case2); // Worst Case
+    runTrialBubbleSort(arrThousand, size, file, case3); // Average Case
     cout << endl;
     
     file.close();
@@ -196,9 +196,9 @@ int main()
     size = 10000;              // Number of elements imported from file.
 
     cout << "Ten Thousand Elements: " << endl;
-    runTrialBubbleSort(arrTenThousand, size, file, case1); // Ascending
-    runTrialBubbleSort(arrTenThousand, size, file, case2); // Descending
-    runTrialBubbleSort(arrTenThousand, size, file, case3); // Random
+    runTrialBubbleSort(arrTenThousand, size, file, case1); // Best Case
+    runTrialBubbleSort(arrTenThousand, size, file, case2); // Worst Case
+    runTrialBubbleSort(arrTenThousand, size, file, case3); // Average Case
     cout << endl;
     
     file.close();
@@ -210,9 +210,9 @@ int main()
     size = 50000;              // Number of elements imported from file.
 
     cout << "Fifty Thousand Elements: " << endl;
-    runTrialBubbleSort(arrFiftyThousand, size, file, case1); // Ascending
-    runTrialBubbleSort(arrFiftyThousand, size, file, case2); // Descending
-    runTrialBubbleSort(arrFiftyThousand, size, file, case3); // Random
+    runTrialBubbleSort(arrFiftyThousand, size, file, case1); // Best Case
+    runTrialBubbleSort(arrFiftyThousand, size, file, case2); // Worst Case
+    runTrialBubbleSort(arrFiftyThousand, size, file, case3); // Average Case
     cout << endl;
     
     file.close();
@@ -224,9 +224,9 @@ int main()
     size = 100000;              // Number of elements imported from file.
 
     cout << "One Hundred Thousand Elements: " << endl;
-    runTrialBubbleSort(arrHundredThousand, size, file, case1); // Ascending
-    runTrialBubbleSort(arrHundredThousand, size, file, case2); // Descending
-    runTrialBubbleSort(arrHundredThousand, size, file, case3); // Random
+    runTrialBubbleSort(arrHundredThousand, size, file, case1); // Best Case
+    runTrialBubbleSort(arrHundredThousand, size, file, case2); // Worst Case
+    runTrialBubbleSort(arrHundredThousand, size, file, case3); // Average Case
     cout << endl;
     
     file.close();
