@@ -139,7 +139,7 @@ int clock10Merge(int A[], int size)
 //average of 10 runs of merge sort
 void test10Merge(int A[], int size)
 {
-	long long time = 0;
+	int time = 0;
 	int* B = new int[size];
 	for (int i = 0; i < 10; i++)
 	{
