@@ -8,6 +8,7 @@
 using namespace std;
 using namespace chrono;
 
+//insertion sort
 void InsertionSort(int *a, int n)
 {
 	int key, i;
@@ -24,6 +25,7 @@ void InsertionSort(int *a, int n)
 	}
 }
 
+//merge sort function(s)
 void merge(int arr[], int left, int mid, int right)
 {
 	//left and right sub arrays
@@ -74,6 +76,7 @@ void merge(int arr[], int left, int mid, int right)
 	delete [] Right; 
 }
 
+//merge sort
 void mergeSort(int arr[], int left, int right)
 {
 	if (left < right)
@@ -101,6 +104,16 @@ void clockInsert(int A[], int size)
     cout << "Time: " << duration.count() << " nanoseconds" << endl;
 }
 
+//calls and times insertion sort and returns the time
+int clock10Insert(int A[], int size)
+{
+	auto start = high_resolution_clock::now();
+	InsertionSort(A, size);
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<nanoseconds>(stop - start);
+	return duration.count();
+}
+
 //Calls and times merge sort
 void clockMerge(int A[], int size)
 {
@@ -113,6 +126,51 @@ void clockMerge(int A[], int size)
     cout << "Time: " << duration.count() << " nanoseconds" << endl;
 }
 
+//returns time for merge sort 
+int clock10Merge(int A[], int size)
+{
+	auto start = high_resolution_clock::now();
+	mergeSort(A, 0, size - 1);
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<nanoseconds>(stop - start);
+	return duration.count();
+}
+
+//average of 10 runs of merge sort
+void test10Merge(int A[], int size)
+{
+	long long time = 0;
+	int* B = new int[size];
+	for (int i = 0; i < 10; i++)
+	{
+		B = A;
+		time = time + clock10Merge(B, size);
+	}
+	A = B;
+	time = time / 10;
+	cout << "Array Size: " << size << " elements." << endl;
+	cout << "Time: " << time << " nanoseconds" << endl;
+	//delete[] B;
+}
+
+//average of 10 runs of insertion sort
+void test10Insert(int A[], int size)
+{
+	long long time = 0;
+	int* B = new int[size];
+	for (int i = 0; i < 10; i++)
+	{
+		B = A;
+		time = time + clock10Insert(B, size);
+	}
+	A = B;
+	time = time / 10.0;
+	cout << "Array Size: " << size << " elements." << endl;
+	cout << "Time: " << time << " nanoseconds" << endl;
+	//delete[] B;
+}
+
+
 //print array, mainly for testing purposes
 void printArray(int *a, int n)
 {
@@ -124,6 +182,7 @@ void printArray(int *a, int n)
 }
 
 //function(s) for making given ordered input array into worst case for merge sort
+//modified code from outside resource
 void join2(int arr[], int left[], int right[], int size)
 {
 	int i;
@@ -219,21 +278,21 @@ void testAllCases()
 		}
 		cout << "Data size: " << size << endl;
 		cout << "BEST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(best,size);
+		test10Insert(best,size);
 		genWorst(best, size);
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
 		worst = average;
-		clockMerge(average, size);
+		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << endl;
 
 	}
@@ -276,21 +335,21 @@ void testAllCases()
 		}
 		cout << "Data size: " << size << endl;
 		cout << "BEST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(best, size);
+		test10Insert(best, size);
 		genWorst(best, size);
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
 		worst = average;
-		clockMerge(average, size);
+		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << endl;
 	}
 	thousand.open("onethousand.txt");
@@ -332,21 +391,21 @@ void testAllCases()
 		}
 		cout << "Data size: " << size << endl;
 		cout << "BEST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(best, size);
+		test10Insert(best, size);
 		genWorst(best, size);
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
 		worst = average;
-		clockMerge(average, size);
+		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << endl;
 	}
 	tenthou.open("tenthousand.txt");
@@ -388,21 +447,21 @@ void testAllCases()
 		}
 		cout << "Data size: " << size << endl;
 		cout << "BEST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(best, size);
+		test10Insert(best, size);
 		genWorst(best, size);
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
 		worst = average;
-		clockMerge(average, size);
+		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << endl;
 	}
 	fiftyThou.open("fiftythousand.txt");
@@ -444,21 +503,22 @@ void testAllCases()
 		}
 		cout << "Data size: " << size << endl;
 		cout << "BEST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(best, size);
+		test10Insert(best, size);
 		genWorst(best, size);
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
+		//did not take average since the number was too big to store and I was getting negative results
 		clockInsert(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
 		worst = average;
-		clockMerge(average, size);
+		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << endl;
 	}
 	hunThou.open("onehundredthousand.txt");
@@ -500,25 +560,25 @@ void testAllCases()
 		}
 		cout << "Data size: " << size << endl;
 		cout << "BEST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		clockInsert(best, size);
+		test10Insert(best, size);
 		genWorst(best, size);
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
-		clockMerge(best, size);
+		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
+		//did not take average since the number was too big to store and I was getting negative results
 		clockInsert(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
 		worst = average;
-		clockMerge(average, size);
+		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
-		clockInsert(worst, size);
+		test10Insert(worst, size);
 		cout << endl;
 	}
 }
-
 
 int main()
 {
