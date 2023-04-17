@@ -47,10 +47,11 @@ int main()
 
     fstream file;   
 
+    cout << endl;
+    cout << "NOTE: Each case is ran 10 times. The result is the average of 10 trials."<< endl << endl;
 
     // Heap Sort ------------------------------------------------------------
-    
-    cout << "Heap Sort run times: " << endl << endl;
+    cout << "Heap Sort average run time: " << endl;
 
 
     // Heap Sort--Ten Elements
@@ -146,7 +147,7 @@ int main()
 
     // Bubble Sort ------------------------------------------------------------
 
-    cout << "Bubble Sort run times: " << endl << endl;
+    cout << "Bubble Sort average run time: " << endl << endl;
 
    // Bubble Sort--Ten Elements.
 
@@ -252,15 +253,21 @@ void runTrialHeapSort(int arr[], int size, fstream& file, string name)
         heapSize+=1;
     }
     
-    // Execute heapSort() and keep track of time.
-    auto start = high_resolution_clock::now();
-    H.heapSort(arr, heapSize);
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<nanoseconds>(stop - start);
+    // Execute heapSort() 10 times and record the average.
+    int trials = 10;
+    long int totalTime = 0;
+    for (size_t i = 0; i < trials; i++)
+    {
+        auto start = high_resolution_clock::now();
+        H.heapSort(arr, heapSize);
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<nanoseconds>(stop - start);
+        totalTime += duration.count();
+    }
 
     // Print results.
     cout << "\t" << name << ": ";
-    cout  << duration.count() << " nanoseconds" << endl;
+    cout  << totalTime/trials << " nanoseconds" << endl;
 }
 
 // Read a list of elements from a file, then use bubblSort() to sort the elements. 
@@ -274,15 +281,21 @@ void runTrialBubbleSort(int arr[], int size, fstream& file, string name)
         arr[i] = stoi(fileInput);
     }
 
-    // Execute bubbleSort() and keep track of time.
-    auto start = high_resolution_clock::now();
-    bubbleSort(arr, size);
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<nanoseconds>(stop - start);
+    // Execute heapSort() 10 times and record the average.
+    int trials = 10;
+    int totalTime = 0;
+    for (size_t i = 0; i < trials; i++)
+    {
+        auto start = high_resolution_clock::now();
+        bubbleSort(arr, size);
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<microseconds>(stop - start);
+        totalTime += duration.count();
+    }
 
     // Print results.
     cout << "\t" << name << ": ";
-    cout  << duration.count() << " nanoseconds" << endl;
+    cout  << totalTime/trials << " microseconds" << endl;
 }
 
 // Standard Bubble Sort algorithm. 
