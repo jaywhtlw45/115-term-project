@@ -1,3 +1,4 @@
+// g++ radix.cpp -o radix
 #include <iostream>
 #include <fstream>
 #include <sstream>

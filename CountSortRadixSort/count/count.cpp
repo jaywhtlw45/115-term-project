@@ -1,3 +1,4 @@
+// g++ count.cpp -o count
 #include <iostream>
 #include <fstream>
 #include <sstream>
