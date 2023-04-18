@@ -32,13 +32,17 @@ void selectionSort(int* array, int size) {
 
 //Calls and times Selection Sort.
 void clock(int* array, int size) {
-    auto start = high_resolution_clock::now();
-    selectionSort(array, size);
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<nanoseconds>(stop - start);
-
+    long sum = 0;
+    for(int i = 0; i < 10; i++){
+        auto start = high_resolution_clock::now();
+        selectionSort(array, size);
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<nanoseconds>(stop - start);
+        sum += duration.count();
+        //cout << "Set " << i + 1 << ": " << duration.count() << "nanoseconds" << endl;
+    }
     cout << "Array Length: " << size << " elements." << endl;
-    cout << "Time: " << duration.count() << " nanoseconds" << endl;
+    cout << "Average Time (out of 10): " << sum / 10 << " nanoseconds" << endl;
 }
 
 //Prints the sorted data set
