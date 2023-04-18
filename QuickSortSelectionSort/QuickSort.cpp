@@ -36,6 +36,7 @@ int partition(int* array, int low, int high) {
     swap(array[low], array[j]);
     return j;
 }
+
 //Quick sort algorithm when the pivot is the first element of the array
 void quickSort(int* array, int p, int r) {
     if(p < r) {
@@ -65,7 +66,8 @@ int partitionBestCase(int* array, int low, int high) {
     swap(array[low], array[j]);
     return j;
 }
-//Quick sort algorithm when the pivot is the first element of the array. Best case when already sorted
+
+//Quick sort algorithm when the pivot is the middle element of the array. Best case when already sorted
 void quickSortBestCase(int* array, int p, int r) {
     if(p < r) {
         int q = partitionBestCase(array, p, r);
@@ -74,27 +76,34 @@ void quickSortBestCase(int* array, int p, int r) {
     }
 }
 
-
 //Calls and times Quick Sort. Uses first pivot for average and worst case
 void clock(int* array, int size) {
-    auto start = high_resolution_clock::now();
-    quickSort(array, 0, (size - 1));
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<nanoseconds>(stop - start);
-
+    long sum = 0;
+    for(int i = 0; i < 10; i++){
+        auto start = high_resolution_clock::now();
+        quickSort(array, 0, (size - 1));
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<nanoseconds>(stop - start);
+        sum += duration.count();
+        //cout << "Set " << i + 1 << ": " << duration.count() << "nanoseconds" << endl;
+    }
     cout << "Array Length: " << size << " elements." << endl;
-    cout << "Time: " << duration.count() << " nanoseconds" << endl;
+    cout << "Average Time (out of 10): " << sum / 10 << " nanoseconds" << endl;
 }
 
 //Calls and times Quick Sort. Uses middle pivot on a sorted list for best case
 void clockBestCase(int* array, int size) {
-    auto start = high_resolution_clock::now();
-    quickSortBestCase(array, 0, (size - 1));
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<nanoseconds>(stop - start);
-
+    long sum = 0;
+    for(int i = 0; i < 10; i++){
+        auto start = high_resolution_clock::now();
+        quickSortBestCase(array, 0, (size - 1));
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<nanoseconds>(stop - start);
+        sum += duration.count();
+        //cout << "Set " << i + 1 << ": " << duration.count() << "nanoseconds" << endl;
+    }
     cout << "Array Length: " << size << " elements." << endl;
-    cout << "Time: " << duration.count() << " nanoseconds" << endl;
+    cout << "Average Time (out of 10): " << sum / 10 << " nanoseconds" << endl;
 }
 
 //Prints the sorted data set
