@@ -285,18 +285,22 @@ void testAllCases()
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
 		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		printArray(worst, size);
 		test10Insertsmall(worst, size);
-		printArray(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
-		worst = average;
+		for (int w = 0; w < size; w++)
+		{
+			worst[w] = average[w];
+		}
 		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
 		test10Insertsmall(worst, size);
 		cout << endl;
 
+		delete[] best;
+		delete[] worst;
+		delete[] average;
 	}
 	hundred.open("onehundred.txt");
 	if (!hundred.is_open())
@@ -347,12 +351,19 @@ void testAllCases()
 		test10Insertsmall(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
-		worst = average;
+		for (int w = 0; w < size; w++)
+		{
+			worst[w] = average[w];
+		}
 		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
 		test10Insertsmall(worst, size);
 		cout << endl;
+
+		delete[] best;
+		delete[] worst;
+		delete[] average;
 	}
 	thousand.open("onethousand.txt");
 	if (!thousand.is_open())
@@ -403,12 +414,19 @@ void testAllCases()
 		test10Insertsmall(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
-		worst = average;
+		for (int w = 0; w < size; w++)
+		{
+			worst[w] = average[w];
+		}
 		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
 		test10Insertsmall(worst, size);
 		cout << endl;
+
+		delete[] best;
+		delete[] worst;
+		delete[] average;
 	}
 	tenthou.open("tenthousand.txt");
 	if (!tenthou.is_open())
@@ -459,12 +477,19 @@ void testAllCases()
 		test10Insertsmall(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
-		worst = average;
+		for (int w = 0; w < size; w++)
+		{
+			worst[w] = average[w];
+		}
 		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
 		test10Insertsmall(worst, size);
 		cout << endl;
+
+		delete[] best;
+		delete[] worst;
+		delete[] average;
 	}
 	fiftyThou.open("fiftythousand.txt");
 	if (!fiftyThou.is_open())
@@ -516,12 +541,19 @@ void testAllCases()
 		test10Insertlarge(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
-		worst = average;
+		for (int w = 0; w < size; w++)
+		{
+			worst[w] = average[w];
+		}
 		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
 		test10Insertsmall(worst, size);
 		cout << endl;
+
+		delete[] best;
+		delete[] worst;
+		delete[] average;
 	}
 	hunThou.open("onehundredthousand.txt");
 	if (!hunThou.is_open())
@@ -573,12 +605,19 @@ void testAllCases()
 		test10Insertlarge(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
-		worst = average;
+		for (int w = 0; w < size; w++)
+		{
+			worst[w] = average[w];
+		}
 		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
 		test10Insertsmall(worst, size);
 		cout << endl;
+
+		delete[] best;
+		delete[] worst;
+		delete[] average;
 	}
 }
 
