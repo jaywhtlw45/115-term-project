@@ -1,4 +1,4 @@
-import random
+import- random
 
 f = open("C:\\users\\jay\\code\\115\\115-term-project\\heapSortBubbleSort\\number_files\\bubble_sort\\onehundredthousand.txt", "w")
 
