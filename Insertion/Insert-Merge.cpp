@@ -8,6 +8,8 @@
 using namespace std;
 using namespace chrono;
 
+long long gCount;
+
 //insertion sort
 void InsertionSort(int *a, int n)
 {
@@ -20,6 +22,7 @@ void InsertionSort(int *a, int n)
 		{
 			a[i + 1] = a[i];
 			i--;
+			gCount++;
 		}
 		a[i + 1] = key;
 	}
@@ -59,12 +62,14 @@ void merge(int arr[], int left, int mid, int right)
 			j++;
 		}
 		k++;
+		gCount++;
 	}
 	while (i < lsize) 
 	{
 		arr[k] = Left[i];
 		i++; 
 		k++;
+		gCount++;
 	}
 	while (j < rsize) 
 	{
@@ -127,6 +132,7 @@ void test10Merge(int A[], int size)
 {
 	long long time = 0;
 	int* B = new int[size];
+	gCount = 0;
 	for (int i = 0; i < 10; i++)
 	{
 		B = A;
@@ -136,6 +142,7 @@ void test10Merge(int A[], int size)
 	time = time / 10.0;
 	cout << "Array Size: " << size << " elements." << endl;
 	cout << "Time: " << time << " nanoseconds" << endl;
+	cout << "# of Comparisons: " << gCount << endl;
 }
 
 //average of 10 runs of insertion sort -- for the larger data sets{50000, 100000} since there is overflow due to sorting taking too long
@@ -143,6 +150,7 @@ void test10Insertlarge  (int A[], int size)
 {
 	int time = 0;
 	int* B = new int[size];
+	gCount = 0;
 	for (int i = 0; i < 10; i++)
 	{
 		B = A;
@@ -152,6 +160,7 @@ void test10Insertlarge  (int A[], int size)
 	time = time / 10.0;
 	cout << "Array Size: " << size << " elements." << endl;
 	cout << "Time: " << time << " microseconds" << endl;
+	cout << "# of Comparisons: " << gCount << endl;
 	//delete[] B;
 }
 
@@ -160,6 +169,7 @@ void test10Insertsmall(int A[], int size)
 {
 	int time = 0;
 	int* B = new int[size];
+	gCount = 0;
 	for (int i = 0; i < 10; i++)
 	{
 		B = A;
@@ -169,6 +179,7 @@ void test10Insertsmall(int A[], int size)
 	time = time / 10.0;
 	cout << "Array Size: " << size << " elements." << endl;
 	cout << "Time: " << time << " nanoseconds" << endl;
+	cout << "# of Comparisons: " << gCount << endl;
 }
 
 //print array, mainly for testing purposes
@@ -537,7 +548,7 @@ void testAllCases()
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
 		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		//did not take average since the number was too big to store and I was getting negative results
+		//
 		test10Insertlarge(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
@@ -601,7 +612,7 @@ void testAllCases()
 		cout << "WORST CASE: " << endl << "Merge Sort: " << endl;
 		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
-		//did not take average since the number was too big to store and I was getting negative results
+		//
 		test10Insertlarge(worst, size);
 		cout << "AVERAGE CASE: " << endl << "Merge Sort: " << endl;
 		//for testing same average input on insertion as well
@@ -612,7 +623,7 @@ void testAllCases()
 		test10Merge(average, size);
 		cout << "Insertion Sort: " << endl;
 		// worst = average
-		test10Insertsmall(worst, size);
+		test10Insertlarge(worst, size);
 		cout << endl;
 
 		delete[] best;
