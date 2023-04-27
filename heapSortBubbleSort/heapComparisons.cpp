@@ -1,4 +1,4 @@
-// heapSort_bubbleSort_Main.cpp
+// heapComparisons.cpp
 // This program uses Heap Sort to sort inputs from txt files.
 
 #include <iostream>
@@ -370,15 +370,8 @@ void Heap::insertValue(int arr[], int val, int &heapSize)
 // If child is larger than its parent, swap parent with largest child and call maxHeapify(child).
 void Heap::maxHeapify(int arr[], int i, int heapSize)
 {
-    heapSortComparisons += 1;
-    if (heapSize < 1)
-    {
-        cout << "maxHeapify() error" << endl;
-        return;
-    }
-
-    heapSortComparisons += 1;
-    if (heapSize == 1)
+     heapSortComparisons += 1;
+    if (heapSize <= 1)
         return;
 
     int left = i * 2 + 1;  // left child of i
@@ -410,16 +403,8 @@ void Heap::maxHeapify(int arr[], int i, int heapSize)
 // Sorts the heap by swapping the root and last element, then calling maxHeapify().
 void Heap::heapSort(int arr[], int heapSize)
 {
-    // Heap is empty or size 1.
     heapSortComparisons += 1;
-    if (heapSize < 1)
-    {
-        cout << "heapSort() error" << endl;
-        return;
-    }
-
-    heapSortComparisons += 1;
-    if (heapSize == 1)
+    if (heapSize <= 1)
         return;
 
     // Heap sort the list.
@@ -446,14 +431,7 @@ void Heap::heapSort(int arr[], int heapSize)
 void Heap::buildMaxHeap(int arr[], int heapSize)
 {
     heapSortComparisons += 1;
-    if (heapSize < 1)
-    {
-        cout << "buildMaxHeap() error" << endl;
-        return;
-    }
-
-    heapSortComparisons += 1;
-    if (heapSize == 1)
+    if (heapSize <= 1)
         return;
 
     for (int j = heapSize / 2 - 1; j >= 0; j--)
