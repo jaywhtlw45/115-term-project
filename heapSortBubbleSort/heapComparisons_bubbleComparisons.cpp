@@ -29,8 +29,7 @@ void runTrialBubbleSort(int arr[], int size, fstream &file, string name);
 void bubbleSort(int arr[], int size);
 
 // Global comparison variables
-double heapSortComparisons = 0;
-double bubbleSortComparisons = 0;
+double comparisons = 0;
 
 int main()
 {
@@ -242,7 +241,7 @@ void runTrialHeapSort(int arr[], int size, fstream &file, string name)
     string fileInput;
     int heapSize = 0;
 
-    heapSortComparisons = 0;
+    comparisons = 0;
 
     // Insert elements into heap.
     for (size_t i = 0; i < size; i++)
@@ -252,29 +251,18 @@ void runTrialHeapSort(int arr[], int size, fstream &file, string name)
         arr[i] = stoi(fileInput);
         heapSize += 1;
     }
-
-    // Execute heapSort() 10 times and record the average.
-    int trials = 10;
-    long int totalTime = 0;
-    for (size_t i = 0; i < trials; i++)
-    {
-        auto start = high_resolution_clock::now();
-        H.heapSort(arr, heapSize);
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<nanoseconds>(stop - start);
-        totalTime += duration.count();
-    }
-
+ 
+    H.heapSort(arr, heapSize);
+ 
     // Print results.
     cout << "\t" << name << ": ";
-    cout << totalTime / trials << " nanoseconds" << endl;
-    cout << "\tComparisons:" << heapSortComparisons/trials << endl;
+    cout << "\tComparisons:" << comparisons << endl;
 }
 
 // Read a list of elements from a file, then use bubblSort() to sort the elements.
 void runTrialBubbleSort(int arr[], int size, fstream &file, string name)
 {
-    bubbleSortComparisons = 0;
+    comparisons = 0;
 
     // Insert elements into array
     string fileInput;
@@ -284,22 +272,11 @@ void runTrialBubbleSort(int arr[], int size, fstream &file, string name)
         arr[i] = stoi(fileInput);
     }
 
-    // Execute bubbleSort() 10 times and record the average.
-    int trials = 10;
-    long int totalTime = 0;
-    for (size_t i = 0; i < trials; i++)
-    {
-        auto start = high_resolution_clock::now();
         bubbleSort(arr, size);
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<microseconds>(stop - start);
-        totalTime += duration.count();
-    }
 
     // Print results.
     cout << "\t" << name << ": ";
-    cout << totalTime / trials << " microseconds" << endl;
-    cout << "\tComparisons:" << bubbleSortComparisons/trials << endl;
+    cout << "\tComparisons:" << comparisons << endl;
 }
 
 // Standard Bubble Sort algorithm.
@@ -309,7 +286,7 @@ void bubbleSort(int arr[], int size)
     {
         for (int j = size - 1; j > 0; j--)
         {
-            bubbleSortComparisons += 1;
+            comparisons += 1;
             if (arr[j] < arr[j - 1])
             {
                 // swap arr[j] and arr[j+1]
@@ -321,56 +298,12 @@ void bubbleSort(int arr[], int size)
     }
 }
 
-// Print the heap.
-void Heap::printArray(int arr[], int heapSize)
-{
-    if (heapSize < 1)
-    {
-        cout << "printArray() error" << endl;
-        return;
-    }
-
-    for (size_t i = 0; i < heapSize; i++)
-    {
-        // cout << "arr[" << i << "]=" << arr[i] << endl;
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-
-// Insert a new node at the end of the heap. Increase heapSize by 1.
-void Heap::insertValue(int arr[], int val, int &heapSize)
-{
-    if (heapSize < 0)
-    {
-        cout << "insertValue() error" << endl;
-        return;
-    }
-
-    // add new node to heap
-    heapSize += 1;
-    arr[heapSize - 1] = val;
-
-    // compare parent node to child node and swap positions if child > parent
-    int parent = heapSize / 2 - 1;
-
-    int child = heapSize - 1;
-    while (parent >= 0 && arr[child] > arr[parent])
-    {
-        int temp = arr[parent];
-        arr[parent] = arr[child];
-        arr[child] = temp;
-
-        child = parent;
-        parent = (parent - 1) / 2;
-    }
-}
 
 // Compare node i to its children.
 // If child is larger than its parent, swap parent with largest child and call maxHeapify(child).
 void Heap::maxHeapify(int arr[], int i, int heapSize)
 {
-     heapSortComparisons += 1;
+     comparisons += 1;
     if (heapSize <= 1)
         return;
 
@@ -379,17 +312,17 @@ void Heap::maxHeapify(int arr[], int i, int heapSize)
     int largest;
 
     // find the largest between i, left, and right
-    heapSortComparisons += 1;
+    comparisons += 1;
     if (left <= (heapSize - 1) && arr[left] > arr[i])
         largest = left;
     else
         largest = i;
 
-    heapSortComparisons += 1;
+    comparisons += 1;
     if (right <= (heapSize - 1) && arr[right] > arr[largest])
         largest = right;
 
-    heapSortComparisons += 1;
+    comparisons += 1;
     if (largest != i)
     {
         int temp = arr[largest];
@@ -403,7 +336,7 @@ void Heap::maxHeapify(int arr[], int i, int heapSize)
 // Sorts the heap by swapping the root and last element, then calling maxHeapify().
 void Heap::heapSort(int arr[], int heapSize)
 {
-    heapSortComparisons += 1;
+    comparisons += 1;
     if (heapSize <= 1)
         return;
 
@@ -430,7 +363,7 @@ void Heap::heapSort(int arr[], int heapSize)
 // Convert an array into a heap.
 void Heap::buildMaxHeap(int arr[], int heapSize)
 {
-    heapSortComparisons += 1;
+    comparisons += 1;
     if (heapSize <= 1)
         return;
 
