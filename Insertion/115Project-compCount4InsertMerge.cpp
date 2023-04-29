@@ -16,6 +16,7 @@ void InsertionSort(int* a, int n)
 	{
 		key = a[j];
 		i = j - 1;
+		gCount++;
 		while ((i >= 0) && (a[i] > key))
 		{
 			a[i + 1] = a[i];
@@ -49,6 +50,7 @@ void merge(int arr[], int left, int mid, int right)
 	int k = left;
 	while (i < lsize && j < rsize)
 	{
+		gCount++;
 		if (Left[i] <= Right[j])
 		{
 			arr[k] = Left[i];
@@ -60,14 +62,12 @@ void merge(int arr[], int left, int mid, int right)
 			j++;
 		}
 		k++;
-		gCount++;
 	}
 	while (i < lsize)
 	{
 		arr[k] = Left[i];
 		i++;
 		k++;
-		gCount++;
 	}
 	while (j < rsize)
 	{
