@@ -1,41 +1,12 @@
 #include <iostream>
 #include <chrono>
 #include <iomanip>
-#include <unordered_map>
 
 using namespace std;
 using namespace chrono;
 
-/*void genValid2Sum(int s[], int indexOfSol1, int indexOfSol2, int input, int size)
-{
-    //input = the number x that we are trying to find numbers to sum up to it
-    //x = solution1, y = solution2
-    int x = (input / 2) + 1;
-    int y = input - x;
-    //cout << x << " " << y;
-    srand(time(0));
 
-    cout << "2sum array: ";
-    //indexOfSol1/indexOfSol2 = index(s) of where you want to put the solutions
-    for (int i = 0; i < size; i++)
-    {
-        if (i == indexOfSol1)
-        {
-            s[indexOfSol1] = x;
-        }
-        else if (i == indexOfSol2)
-        {
-            s[indexOfSol2] = y;
-        }
-        else
-        {
-            s[i] = rand() % size;
-        }
-        //cout << s[i] << " ";
-    }
-}
-*/
-
+//this function creates the data set
 void placeNumbers(int arr[], int size, int num1, int index1, int num2, int index2, int target) {
     // Seed the random number generator
     srand(time(NULL));
@@ -53,15 +24,9 @@ void placeNumbers(int arr[], int size, int num1, int index1, int num2, int index
     // Place the two numbers at their respective indexes
     arr[index1] = num1;
     arr[index2] = num2;
-    // Check if the sum of the two numbers equals the target
-    //if (num1 + num2 == target) {
-      //  cout << "The sum of " << num1 << " and " << num2 << " equals " << target << endl;
-    //}
-    //else {
-      //  cout << "The sum of " << num1 << " and " << num2 << " does not equal " << target << endl;
-    //}
 }
 
+//brute force function
 void twoSum(int nums[], int size, int target, int result[]) {
     for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
@@ -74,12 +39,14 @@ void twoSum(int nums[], int size, int target, int result[]) {
     }
 }
 
+//initializes "map" that will be used for the optimal function
 void initializeMap(bool map[], int n) {
     for (int i = 0; i < n; i++) {
         map[i] = false;
     }
 }
 
+//optimal twoSum function
 void twoSumOptimal(int arr[], int n, int target, bool map[]) {
     for (int i = 0; i < n; i++) {
         int complement = target - arr[i];
@@ -109,8 +76,6 @@ int main() {
     int nums1_b[100];
     int target1_b = 3;
     int result1_b[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start1 = high_resolution_clock::now();
-    //genValid2Sum(nums1, 25, 24, target1, 100);
         placeNumbers(nums1_b, 100, 1, 0, 2, 1, target1_b);
     auto start1_b = high_resolution_clock::now();
         twoSum(nums1_b, 100, target1_b, result1_b);
@@ -122,8 +87,6 @@ int main() {
     int nums2_b[1000];
     int target2_b = 3;
     int result2_b[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start2 = high_resolution_clock::now();
-    //genValid2Sum(nums2, 251, 249, target2, 1000);
         placeNumbers(nums2_b, 1000, 1, 0, 2, 1, target2_b);
     auto start2_b = high_resolution_clock::now();
         twoSum(nums2_b, 1000, target2_b, result2_b);
@@ -135,7 +98,6 @@ int main() {
     int nums3_b[10000];
     int target3_b = 3;
     int result3_b[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums3, 2499, 2501, target3, 10000);
         placeNumbers(nums3_b, 10000, 1, 0, 2, 1, target3_b);
     auto start3_b = high_resolution_clock::now();
         twoSum(nums3_b, 10000, target3_b, result3_b);
@@ -146,8 +108,7 @@ int main() {
     //50000 items - brute force
     int nums4_b[50000];
     int target4_b = 3;
-    int result4_b[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums4, 15000, 10000, target4, 50000);
+    int result4_b[2] = { 0, 0 }; // initialize the result array to 0;
         placeNumbers(nums4_b, 50000, 1, 0, 2, 1, target4_b);
     auto start4_b = high_resolution_clock::now();
         twoSum(nums4_b, 50000, target4_b, result4_b);
@@ -178,7 +139,6 @@ int main() {
     int nums_opb[10];
     bool map_b[10];
     int target_opb = 3;
-    //genValid2Sum(nums_op, 4, 5, target_op, 10);
         placeNumbers(nums_opb, 10, 1, 0, 2, 1, target_opb);
         initializeMap(map_b, 10);
     auto start_opb = high_resolution_clock::now();
@@ -192,12 +152,9 @@ int main() {
     bool map_b1[100];
     int target1_opb = 3;
     int result1_opb[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start1 = high_resolution_clock::now();
-    //genValid2Sum(nums1, 25, 24, target1, 100);
         placeNumbers(nums1_opb, 100, 1, 0, 2, 1, target1_opb);
         initializeMap(map_b1, 100);
     auto start1_opb = high_resolution_clock::now();
-        //initializeMap(map_b1, 100);
         twoSumOptimal(nums1_opb, 100, target1_opb, map_b1);
     auto stop1_opb = high_resolution_clock::now();
     auto duration1_opb = duration_cast<nanoseconds>(stop1_opb - start1_opb);
@@ -208,8 +165,6 @@ int main() {
     bool map_b2[1000];
     int target2_opb = 3;
     int result2_opb[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start2 = high_resolution_clock::now();
-    //genValid2Sum(nums2, 251, 249, target2, 1000);
         placeNumbers(nums2_opb, 1000, 1, 0, 2, 1, target2_opb);
         initializeMap(map_b2, 1000);
     auto start2_opb = high_resolution_clock::now();
@@ -223,7 +178,6 @@ int main() {
     bool map_b3[10000];
     int target3_opb = 3;
     int result3_opb[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums3, 2499, 2501, target3, 10000);
         placeNumbers(nums3_opb, 10000, 1, 0, 2, 1, target3_opb);
         initializeMap(map_b3, 10000);
     auto start3_opb = high_resolution_clock::now();
@@ -237,7 +191,6 @@ int main() {
     bool map_b4[50000];
     int target4_opb = 3;
     int result4_opb[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums4, 15000, 10000, target4, 50000);
         placeNumbers(nums4_opb, 50000, 1, 0, 2, 1, target4_opb);
         initializeMap(map_b4, 50000);
     auto start4_opb = high_resolution_clock::now();
@@ -269,7 +222,6 @@ int main() {
     int nums_w[10];
     int target_w = 212;
     int result_w[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums, 4, 5, target, 10);
         placeNumbers(nums_w, 10, 10, 9, 11, 8, target_w);
     auto start_w = high_resolution_clock::now();
         twoSum(nums_w, 10, target_w, result_w);
@@ -281,8 +233,6 @@ int main() {
     int nums1_w[100];
     int target1_w = 500;
     int result1_w[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start1 = high_resolution_clock::now();
-    //genValid2Sum(nums1, 25, 24, target1, 100);
         placeNumbers(nums1_w, 100, 200, 99, 200, 98, target1_w);
     auto start1_w = high_resolution_clock::now();
         twoSum(nums1_w, 100, target1_w, result1_w);
@@ -294,8 +244,6 @@ int main() {
     int nums2_w[1000];
     int target2_w = 3000;
     int result2_w[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start2 = high_resolution_clock::now();
-    //genValid2Sum(nums2, 251, 249, target2, 1000);
         placeNumbers(nums2_w, 1000, 999, 999, 998, 998, target2_w);
     auto start2_w = high_resolution_clock::now();
         twoSum(nums2_w, 1000, target2_w, result2_w);
@@ -307,7 +255,6 @@ int main() {
     int nums3_w[10000];
     int target3_w = 30000;
     int result3_w[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums3, 2499, 2501, target3, 10000);
         placeNumbers(nums3_w, 10000, 9999, 9999, 9998, 9998, target3_w);
     auto start3_w = high_resolution_clock::now();
         twoSum(nums3_w, 10000, target3_w, result3_w);
@@ -319,7 +266,6 @@ int main() {
     int nums4_w[50000];
     int target4_w = 150000;
     int result4_w[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums4, 15000, 10000, target4, 50000);
         placeNumbers(nums4_w, 50000, 49999, 49999, 49998, 49998, target4_w);
     auto start4_w = high_resolution_clock::now();
         twoSum(nums4_w, 50000, target4_w, result4_w);
@@ -348,7 +294,6 @@ int main() {
     int nums_opw[10];
     bool map_w[10];
     int target_opw = 25;
-    //genValid2Sum(nums_op, 4, 5, target_op, 10);
         placeNumbers(nums_opw, 10, 9, 9, 8, 8, target_opw);
     auto start_opw = high_resolution_clock::now();
         initializeMap(map_w, 10);
@@ -362,8 +307,6 @@ int main() {
     bool map_w1[100];
     int target1_opw = 500;
     int result1_opw[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start1 = high_resolution_clock::now();
-    //genValid2Sum(nums1, 25, 24, target1, 100);
         placeNumbers(nums1_opw, 100, 200, 99, 200, 98, target1_opw);
     auto start1_opw = high_resolution_clock::now();
         initializeMap(map_w1, 100);
@@ -377,8 +320,6 @@ int main() {
     bool map_w2[1000];
     int target2_opw = 3000;
     int result2_opw[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start2 = high_resolution_clock::now();
-    //genValid2Sum(nums2, 251, 249, target2, 1000);
         placeNumbers(nums2_opw, 1000, 999, 999, 998, 998, target2_opw);
     auto start2_opw = high_resolution_clock::now();
         initializeMap(map_w2, 1000);
@@ -392,7 +333,6 @@ int main() {
     bool map_w3[10000];
     int target3_opw = 30000;
     int result3_opw[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums3, 2499, 2501, target3, 10000);
         placeNumbers(nums3_opw, 10000, 9999, 9999, 9998, 9998, target3_opw);
     auto start3_opw = high_resolution_clock::now();
         initializeMap(map_w3, 10000);
@@ -406,7 +346,6 @@ int main() {
     bool map_w4[50000];
     int target4_opw = 150000;
     int result4_opw[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums4, 15000, 10000, target4, 50000);
         placeNumbers(nums4_opw, 50000, 49999, 49999, 49998, 49998, target4_opw);
     auto start4_opw = high_resolution_clock::now();
         initializeMap(map_w4, 50000);
@@ -438,7 +377,6 @@ int main() {
     int nums[10];
     int target = 5;
     int result[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums, 4, 5, target, 10);
         placeNumbers(nums, 10, 2, 4, 3, 5, target);
     auto start = high_resolution_clock::now();
         twoSum(nums, 10, target, result);
@@ -450,8 +388,6 @@ int main() {
     int nums1[100];
     int target1 = 49;
     int result1[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start1 = high_resolution_clock::now();
-    //genValid2Sum(nums1, 25, 24, target1, 100);
         placeNumbers(nums1, 100, 25, 25, 24, 26, target1);
     auto start1 = high_resolution_clock::now();
         twoSum(nums1, 100, target1, result1);
@@ -463,8 +399,6 @@ int main() {
     int nums2[1000];
     int target2 = 500;
     int result2[2] = { 0, 0 }; // initialize the result array to 0
-    //auto start2 = high_resolution_clock::now();
-    //genValid2Sum(nums2, 251, 249, target2, 1000);
         placeNumbers(nums2, 1000, 249, 250, 251, 249, target2);
     auto start2 = high_resolution_clock::now();
         twoSum(nums2, 1000, target2, result2);
@@ -476,7 +410,6 @@ int main() {
     int nums3[10000];
     int target3 = 5000;
     int result3[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums3, 2499, 2501, target3, 10000);
         placeNumbers(nums3, 10000, 2499, 2499, 2501, 2501, target3);
     auto start3 = high_resolution_clock::now();
         twoSum(nums3, 10000, target3, result3);
@@ -488,7 +421,6 @@ int main() {
     int nums4[50000];
     int target4 = 25000;
     int result4[2] = { 0, 0 }; // initialize the result array to 0
-    //genValid2Sum(nums4, 15000, 10000, target4, 50000);
         placeNumbers(nums4, 50000,12499, 12499, 12501, 12501, target3);
     auto start4 = high_resolution_clock::now();
         twoSum(nums4, 50000, target4, result4);
@@ -517,7 +449,6 @@ int main() {
     int nums_op[10];
     bool map[10];
     int target_op = 5;
-    //genValid2Sum(nums_op, 4, 5, target_op, 10);
         placeNumbers(nums_op, 10, 2, 4, 3, 5, target_op);
     auto start_op = high_resolution_clock::now();
         initializeMap(map, 10);
@@ -530,7 +461,6 @@ int main() {
     int nums_op1[100];
     bool map1[100];
     int target_op1 = 49;
-    //genValid2Sum(nums_op1, 24, 25, target_op1, 100);
         placeNumbers(nums1, 100, 25, 25, 24, 26, target1);
     auto start_op1 = high_resolution_clock::now();
         initializeMap(map1, 100);
@@ -543,7 +473,6 @@ int main() {
     int nums_op2[1000];
     bool map2[1000];
     int target_op2 = 500;
-    //genValid2Sum(nums_op2, 249, 251, target_op2, 1000);
         placeNumbers(nums_op2, 1000, 249, 249, 251, 251, target_op2);
     auto start_op2 = high_resolution_clock::now();
         initializeMap(map2, 1000);
@@ -556,7 +485,6 @@ int main() {
     int nums_op3[10000];
     bool map3[10000];
     int target_op3 = 5000;
-    //genValid2Sum(nums_op3, 2449, 2501, target_op3, 10000);
         placeNumbers(nums_op3, 10000, 2499, 2499, 2501, 2501, target_op3);
     auto start_op3 = high_resolution_clock::now();
         initializeMap(map3, 10000);
@@ -569,7 +497,6 @@ int main() {
     int nums_op4[50000];
     bool map4[50000];
     int target_op4 = 25000;
-    //genValid2Sum(nums_op3, 2449, 2501, target_op3, 10000);
         placeNumbers(nums_op4, 50000,12499, 12499, 12501, 12501, target_op4);
     auto start_op4 = high_resolution_clock::now();
         initializeMap(map4, 50000);
@@ -582,7 +509,6 @@ int main() {
     int nums_op5[100000];
     bool map5[100000];
     int target_op5 = 50000;
-    //genValid2Sum(nums_op3, 2449, 2501, target_op3, 10000);
         placeNumbers(nums_op5, 100000,24999, 24999, 25001, 25001, target_op5);        
     auto start_op5 = high_resolution_clock::now();
         initializeMap(map5, 100000);
