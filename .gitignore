@@ -1,5 +1,3 @@
 .vscode/*
+!.vscode/launch.json
 *.exe
-**/.vscode
-**/.dSYM
-.DS_Store
