@@ -23,6 +23,8 @@ public:
     void buildMaxHeap(int arr[], int heapSize);          // Creates a heap.
 };
 
+void runTrialHeapSort(int arr[], int size, fstream &file, string name);
+
 int main()
 {
     string case1 = "Best Case:    ";
@@ -30,16 +32,17 @@ int main()
     string case3 = "Average Case: ";
 
     // Input Files
-    string heapTenFile = "./number_files/heap_sort/ten.txt";
-    string heapHundredFile = "./number_files/heap_sort/onehundred.txt";
-    string heapThousandFile = "./number_files/heap_sort/onethousand.txt";
-    string heapTenThousandFile = "./number_files/heap_sort/tenthousand.txt";
-    string heapFiftyThousandFile = "./number_files/heap_sort/fiftythousand.txt";
-    string heapHundredThousandFile = "./number_files/heap_sort/onehundredthousand.txt";
+    string heapTenFile = "./ten.txt";
+    string heapHundredFile = "./onehundred.txt";
+    string heapThousandFile = "./onethousand.txt";
+    string heapTenThousandFile = "./tenthousand.txt";
+    string heapFiftyThousandFile = "./fiftythousand.txt";
+    string heapHundredThousandFile = "./onehundredthousand.txt";
 
 
     fstream file;
 
+    // Arrays are used to store input from files.
     int arrTen[10]; 
     int arrHundred[100]; 
     int arrThousand[1000]; 

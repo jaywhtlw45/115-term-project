@@ -22,12 +22,12 @@ int main()
     string case2 = "Worst Case:   ";
     string case3 = "Average Case: ";
 
-    string bsTenFile = "./number_files/bubble_sort/ten.txt";
-    string bsHundredFile = "./number_files/bubble_sort/onehundred.txt";
-    string bsThousandFile = "./number_files/bubble_sort/onethousand.txt";
-    string bsTenThousandFile = "./number_files/bubble_sort/tenthousand.txt";
-    string bsFiftyThousandFile = "./number_files/bubble_sort/fiftythousand.txt";
-    string bsHundredThousandFile = "./number_files/bubble_sort/onehundredthousand.txt";
+    string bsTenFile = "./ten.txt";
+    string bsHundredFile = "./onehundred.txt";
+    string bsThousandFile = "./onethousand.txt";
+    string bsTenThousandFile = "./tenthousand.txt";
+    string bsFiftyThousandFile = "./fiftythousand.txt";
+    string bsHundredThousandFile = "./onehundredthousand.txt";
 
     fstream file;
 
