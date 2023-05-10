@@ -23,15 +23,8 @@ public:
     void buildMaxHeap(int arr[], int heapSize);          // Creates a heap.
 };
 
-// Runs a trial for a given input.
-void runTrialHeapSort(int arr[], int size, fstream &file, string name);
-void runTrialBubbleSort(int arr[], int size, fstream &file, string name);
-void bubbleSort(int arr[], int size);
-
-
 int main()
 {
-
     string case1 = "Best Case:    ";
     string case2 = "Worst Case:   ";
     string case3 = "Average Case: ";
@@ -44,27 +37,21 @@ int main()
     string heapFiftyThousandFile = "./number_files/heap_sort/fiftythousand.txt";
     string heapHundredThousandFile = "./number_files/heap_sort/onehundredthousand.txt";
 
-    string bsTenFile = "./number_files/bubble_sort/ten.txt";
-    string bsHundredFile = "./number_files/bubble_sort/onehundred.txt";
-    string bsThousandFile = "./number_files/bubble_sort/onethousand.txt";
-    string bsTenThousandFile = "./number_files/bubble_sort/tenthousand.txt";
-    string bsFiftyThousandFile = "./number_files/bubble_sort/fiftythousand.txt";
-    string bsHundredThousandFile = "./number_files/bubble_sort/onehundredthousand.txt";
 
     fstream file;
 
-    cout << endl;
-    cout << "NOTE: Each case is ran 10 times. The result is the average of 10 trials." << endl
-         << endl;
+    int arrTen[10]; 
+    int arrThousand[1000]; // Heap of size 1,000.
 
-    // Heap Sort ------------------------------------------------------------
-    cout << "Heap Sort average run time: " << endl;
+    int arrTenThousand[10000]; 
 
-    // Heap Sort--Ten Elements
 
+
+    cout << "Heap Sort: " << endl;
+
+    // Ten Elements
     file.open(heapTenFile);
     int size = 10;  // Number of elements imported from file.
-    int arrTen[10]; // Heap of size 10.
 
     cout << "Ten Elements: " << endl;
     runTrialHeapSort(arrTen, size, file, case1); // Best Case
@@ -74,8 +61,8 @@ int main()
 
     file.close();
 
-    // Heap Sort--One Hundred Elements
 
+    // One Hundred Elements
     file.open(heapHundredFile);
     int arrHundred[100]; // Heap of size 100.
     size = 100;          // Number of elements imported from file.
@@ -88,10 +75,9 @@ int main()
 
     file.close();
 
-    // Heap Sort--One Thousand Elements
 
+    // One Thousand Elements
     file.open(heapThousandFile);
-    int arrThousand[1000]; // Heap of size 1,000.
     size = 1000;           // Number of elements imported from file.
 
     cout << "One Thousand Elements: " << endl;
@@ -102,11 +88,11 @@ int main()
 
     file.close();
 
-    // Heap Sort--Ten Thousand Elements
+
+    // Ten Thousand Elements
 
     file.open(heapTenThousandFile);
-    int arrTenThousand[10000]; // Heap of size 10,000.
-    size = 10000;              // Number of elements imported from file.
+    size = 10000;              
 
     cout << "Ten Thousand Elements: " << endl;
     runTrialHeapSort(arrTenThousand, size, file, case1); // Best Case
