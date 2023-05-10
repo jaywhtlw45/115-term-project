@@ -41,11 +41,11 @@ int main()
     fstream file;
 
     int arrTen[10]; 
-    int arrThousand[1000]; // Heap of size 1,000.
-
+    int arrHundred[100]; 
+    int arrThousand[1000]; 
     int arrTenThousand[10000]; 
-
-
+    int arrFiftyThousand[50000];
+    int arrHundredThousand[100000]; 
 
     cout << "Heap Sort: " << endl;
 
@@ -64,8 +64,7 @@ int main()
 
     // One Hundred Elements
     file.open(heapHundredFile);
-    int arrHundred[100]; // Heap of size 100.
-    size = 100;          // Number of elements imported from file.
+    size = 100;          
 
     cout << "One Hundred Elements: " << endl;
     runTrialHeapSort(arrHundred, size, file, case1); // Best Case
@@ -78,7 +77,7 @@ int main()
 
     // One Thousand Elements
     file.open(heapThousandFile);
-    size = 1000;           // Number of elements imported from file.
+    size = 1000;           
 
     cout << "One Thousand Elements: " << endl;
     runTrialHeapSort(arrThousand, size, file, case1); // Best Case
@@ -90,7 +89,6 @@ int main()
 
 
     // Ten Thousand Elements
-
     file.open(heapTenThousandFile);
     size = 10000;              
 
@@ -102,10 +100,8 @@ int main()
 
     file.close();
 
-    // Heap Sort--Fifty Thousand Elements
-
+    // Fifty Thousand Elements
     file.open(heapFiftyThousandFile);
-    int arrFiftyThousand[50000]; // Heap of size 50,000.
     size = 50000;                // Number of elements imported from file.
 
     cout << "Fifty Thousand Elements: " << endl;
@@ -116,11 +112,9 @@ int main()
 
     file.close();
 
-    // Heap Sort--One Hundred Thousand Elements
-
+    // One Hundred Thousand Elements
     file.open(heapHundredThousandFile);
-    int arrHundredThousand[100000]; // Heap of size 100,000.
-    size = 100000;                  // Number of elements imported from file.
+    size = 100000;                  
 
     cout << "Hundred Thousand Elements: " << endl;
     runTrialHeapSort(arrHundredThousand, size, file, case1); // Best Case
@@ -131,90 +125,6 @@ int main()
 
     file.close();
 
-    // Bubble Sort ------------------------------------------------------------
-
-    cout << "Bubble Sort average run time: " << endl
-         << endl;
-
-    // Bubble Sort--Ten Elements.
-
-    file.open(bsTenFile);
-    size = 10; // Number of elements imported from file.
-
-    cout << "Ten Elements: " << endl;
-    runTrialBubbleSort(arrTen, size, file, case1); // Best Case
-    runTrialBubbleSort(arrTen, size, file, case2); // Worst Case
-    runTrialBubbleSort(arrTen, size, file, case3); // Average Case
-    cout << endl;
-
-    file.close();
-
-    // Bubble Sort--One Hundred Elements.
-
-    file.open(bsHundredFile);
-    size = 100; // Number of elements imported from file.
-
-    cout << "One Hundred Elements: " << endl;
-    runTrialBubbleSort(arrHundred, size, file, case1); // Best Case
-    runTrialBubbleSort(arrHundred, size, file, case2); // Worst Case
-    runTrialBubbleSort(arrHundred, size, file, case3); // Average Case
-    cout << endl;
-
-    file.close();
-
-    // Bubble Sort--One Thousand Elements.
-
-    file.open(bsThousandFile);
-    size = 1000; // Number of elements imported from file.
-
-    cout << "One Thousand Elements: " << endl;
-    runTrialBubbleSort(arrThousand, size, file, case1); // Best Case
-    runTrialBubbleSort(arrThousand, size, file, case2); // Worst Case
-    runTrialBubbleSort(arrThousand, size, file, case3); // Average Case
-    cout << endl;
-
-    file.close();
-
-    // Bubble Sort--Ten Thousand Elements.
-
-    file.open(bsTenThousandFile);
-    size = 10000; // Number of elements imported from file.
-
-    cout << "Ten Thousand Elements: " << endl;
-    runTrialBubbleSort(arrTenThousand, size, file, case1); // Best Case
-    runTrialBubbleSort(arrTenThousand, size, file, case2); // Worst Case
-    runTrialBubbleSort(arrTenThousand, size, file, case3); // Average Case
-    cout << endl;
-
-    file.close();
-
-    // Bubble Sort--Fifty Thousand Elements.
-
-    file.open(bsFiftyThousandFile);
-    size = 50000; // Number of elements imported from file.
-
-    cout << "Fifty Thousand Elements: " << endl;
-    runTrialBubbleSort(arrFiftyThousand, size, file, case1); // Best Case
-    runTrialBubbleSort(arrFiftyThousand, size, file, case2); // Worst Case
-    runTrialBubbleSort(arrFiftyThousand, size, file, case3); // Average Case
-    cout << endl;
-
-    file.close();
-
-    // Bubble Sort--One Hundred Thousand Elements.
-
-    file.open(bsHundredThousandFile);
-    size = 100000; // Number of elements imported from file.
-
-    cout << "One Hundred Thousand Elements: " << endl;
-    runTrialBubbleSort(arrHundredThousand, size, file, case1); // Best Case
-    runTrialBubbleSort(arrHundredThousand, size, file, case2); // Worst Case
-    runTrialBubbleSort(arrHundredThousand, size, file, case3); // Average Case
-    cout << endl;
-
-    file.close();
-
-    cin.get();
     return 0;
 }
 
@@ -229,12 +139,11 @@ void runTrialHeapSort(int arr[], int size, fstream &file, string name)
     for (size_t i = 0; i < size; i++)
     {
         file >> fileInput;
-        // H.insertValue(arr, stoi(fileInput), heapSize);
         arr[i] = stoi(fileInput);
         heapSize += 1;
     }
 
-    // Execute heapSort() 10 times and record the average.
+    // Execute heapSort() 10 times and keep track of time.
     int trials = 10;
     long int totalTime = 0;
     for (size_t i = 0; i < trials; i++)
@@ -246,55 +155,9 @@ void runTrialHeapSort(int arr[], int size, fstream &file, string name)
         totalTime += duration.count();
     }
 
-    // Print results.
+    // Print the average time of 10 trials.
     cout << "\t" << name << ": ";
     cout << totalTime / trials << " nanoseconds" << endl;
-}
-
-// Read a list of elements from a file, then use bubblSort() to sort the elements.
-void runTrialBubbleSort(int arr[], int size, fstream &file, string name)
-{
-    // Insert elements into array
-    string fileInput;
-    for (size_t i = 0; i < size; i++)
-    {
-        file >> fileInput;
-        arr[i] = stoi(fileInput);
-    }
-
-    // Execute bubbleSort() 10 times and record the average.
-    int trials = 10;
-    long int totalTime = 0;
-    for (size_t i = 0; i < trials; i++)
-    {
-        auto start = high_resolution_clock::now();
-        bubbleSort(arr, size);
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<microseconds>(stop - start);
-        totalTime += duration.count();
-    }
-
-    // Print results.
-    cout << "\t" << name << ": ";
-    cout << totalTime / trials << " microseconds" << endl;
-}
-
-// Standard Bubble Sort algorithm.
-void bubbleSort(int arr[], int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = size - 1; j > 0; j--)
-        {
-            if (arr[j] < arr[j - 1])
-            {
-                // swap arr[j] and arr[j+1]
-                int temp = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = temp;
-            }
-        }
-    }
 }
 
 // Compare node i to its children.
