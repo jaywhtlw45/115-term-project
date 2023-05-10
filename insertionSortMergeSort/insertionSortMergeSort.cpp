@@ -134,8 +134,7 @@ void test10Merge(int A[], int size)
 	}
 	A = B;
 	time = time / 10.0;
-	cout << "Array Size: " << size << " elements." << endl;
-	cout << "Time: " << time << " nanoseconds" << endl;
+	cout << "\tTime: " << time << " nanoseconds" << endl;
 }
 
 //average of 10 runs of insertion sort -- for the larger data sets{50000, 100000} since there is overflow due to sorting taking too long
@@ -150,8 +149,7 @@ void test10Insertlarge  (int A[], int size)
 	}
 	A = B;
 	time = time / 10.0;
-	cout << "Array Size: " << size << " elements." << endl;
-	cout << "Time: " << time << " microseconds" << endl;
+	cout << "\tTime: " << time << " microseconds" << endl;
 	//delete[] B;
 }
 
@@ -167,8 +165,7 @@ void test10Insertsmall(int A[], int size)
 	}
 	A = B;
 	time = time / 10.0;
-	cout << "Array Size: " << size << " elements." << endl;
-	cout << "Time: " << time << " nanoseconds" << endl;
+	cout << "\tTime: " << time << " nanoseconds" << endl;
 }
 
 //print array, mainly for testing purposes
@@ -402,8 +399,8 @@ void testAllCases()
 			}
 			i++;
 		}
-		cout << "Data size: " << size << endl;
-		cout << "BEST CASE: " << endl << "Merge Sort: " << endl;
+		cout << size << " elements:" << endl;
+		cout << "BEST CASE: " << "Merge Sort: " << endl;
 		test10Merge(best, size);
 		cout << "Insertion Sort: " << endl;
 		test10Insertsmall(best, size);
