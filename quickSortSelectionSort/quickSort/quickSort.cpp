@@ -154,19 +154,15 @@ void runSort(ifstream & txtFile, string fileName, int size) {
         }
     }
     // Output the best case results
-    cout << "Best Case - Quick Sort " << size << " elements:" << endl;
-    cout << "Average Time (out of 10): " << sumBest / 10 << " nanoseconds" << endl;
-    cout << endl;
+    cout << size << " Elements:" << endl;
+    cout << "\tBest Case:    : " << sumBest / 10 << " nanoseconds" << endl;
     
     // Output the worst case results
-    cout << "Worst Case - Quick Sort " << size << " elements:" <<endl;
-    cout << "Average Time (out of 10): " << sumWorst / 10 << " nanoseconds" << endl;
-    cout << endl;
+    cout << "\tWorst Case:   : " << sumWorst / 10 << " nanoseconds" << endl;
     
     // Output the avg case results
-    cout << "Average Case - Quick Sort " << size << " elements:" <<endl;
-    cout << "Average Time (out of 10): " << sumAvg / 10 << " nanoseconds" << endl;
-    cout << endl << endl << endl;
+    cout << "\tAverage Case: : " << size << sumAvg / 10 << " nanoseconds" << endl;
+    cout << endl;
     
     delete[] bestCase;
     delete[] worstCase;

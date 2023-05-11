@@ -37,6 +37,8 @@ To ensure ease of use, here are the executable names per folder:
 In order to remove executables, use the following command:
 > make clean
 
+Note that the experiments were done using Linux, which is the preferred operating system for running the algorithms. We noticed that Quick Sort tends to hang after testing 10,000 elements specificially on Windows, but runs well on both Linux and MacOS.
+
 ---
 ### Directories
 Within the home directory are folders for the sorting algorithms. Each folder contains two sorting algorithms, as contributed by a given group member. 
