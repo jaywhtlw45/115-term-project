@@ -116,19 +116,6 @@ int main() {
     auto duration4_b = duration_cast<nanoseconds>(stop4_b - start4_b);
     cout << "Execution time for 50000: " << duration4_b.count() << " ns" << endl;
 
-    //100000 items - brute force
-    int nums5_b[100000];
-    int target5_b = 3;
-    int result5_b[2] = { 0, 0 }; // initialize the result array to 0
-        placeNumbers(nums5_b, 100000, 1, 0, 2, 1, target5_b);
-    auto start5_b = high_resolution_clock::now();
-        twoSum(nums5_b, 100000, target5_b, result5_b);
-    auto stop5_b = high_resolution_clock::now();
-    auto duration5_b = duration_cast<nanoseconds>(stop5_b - start5_b);
-    cout << "Execution time for 100000: " << duration5_b.count() << " ns" << endl;
-    
-
-
     cout << endl;
     cout << endl;
 
@@ -199,19 +186,6 @@ int main() {
     auto duration4_opb = duration_cast<nanoseconds>(stop4_opb - start4_opb);
     cout << "Execution time for 50000: " << duration4_opb.count() << " ns" << endl;
 
-    //100000 items - brute force
-    int nums5_opb[100000];
-    bool map_b5[100000];
-    int target5_opb = 3;
-    int result5_opb[2] = { 0, 0 }; // initialize the result array to 0
-        placeNumbers(nums5_opb, 100000, 1, 0, 2, 1, target5_opb);
-        initializeMap(map_b5, 100000);
-    auto start5_opb = high_resolution_clock::now();
-        twoSumOptimal(nums5_opb, 100000, target5_opb, map_b5);
-    auto stop5_opb = high_resolution_clock::now();
-    auto duration5_opb = duration_cast<nanoseconds>(stop5_opb - start5_opb);
-    cout << "Execution time for 100000: " << duration5_opb.count() << " ns" << endl;
-
 
     cout << endl;
     cout << endl;
@@ -272,17 +246,6 @@ int main() {
     auto stop4_w = high_resolution_clock::now();
     auto duration4_w = duration_cast<nanoseconds>(stop4_w - start4_w);
     cout << "Execution time for 50000: " << duration4_w.count() << " ns" << endl;
-
-    //100000 items - brute force
-    int nums5_w[100000];
-    int target5_w = 300000;
-    int result5_w[2] = { 0, 0 }; // initialize the result array to 0
-        placeNumbers(nums5_w, 100000, 99999, 99999, 99998, 99998, target5_w);
-    auto start5_w = high_resolution_clock::now();
-        twoSum(nums5_w, 100000, target5_w, result5_w);
-    auto stop5_w = high_resolution_clock::now();
-    auto duration5_w = duration_cast<nanoseconds>(stop5_w - start5_w);
-    cout << "Execution time for 100000: " << duration5_w.count() << " ns" << endl;
 
     
     cout << endl;
@@ -354,20 +317,6 @@ int main() {
     auto duration4_opw = duration_cast<nanoseconds>(stop4_opw - start4_opw);
     cout << "Execution time for 50000: " << duration4_opw.count() << " ns" << endl;
 
-    //100000 items - brute force
-    int nums5_opw[100000];
-    bool map_w5[100000];
-    int target5_opw = 300000;
-    int result5_opw[2] = { 0, 0 }; // initialize the result array to 0
-        placeNumbers(nums5_opw, 100000, 99999, 99999, 99998, 99998, target5_opw);
-    auto start5_opw = high_resolution_clock::now();
-        initializeMap(map_w5, 100000);
-        twoSumOptimal(nums5_opw, 100000, target5_opw, map_w5);
-    auto stop5_opw = high_resolution_clock::now();
-    auto duration5_opw = duration_cast<nanoseconds>(stop5_opw - start5_opw);
-    cout << "Execution time for 100000: " << duration5_opw.count() << " ns" << endl;
-
-
     cout << endl;
     cout << endl;
     
@@ -427,17 +376,6 @@ int main() {
     auto stop4 = high_resolution_clock::now();
     auto duration4 = duration_cast<nanoseconds>(stop4 - start4);
     cout << "Execution time for 50000: " << duration4.count() << " ns" << endl;
-
-    //100000 items - brute force
-    int nums5[100000];
-    int target5 = 50000;
-    int result5[2] = { 0, 0 }; // initialize the result array to 0
-        placeNumbers(nums5, 100000,24999, 24999, 25001, 25001, target5);
-    auto start5 = high_resolution_clock::now();
-        twoSum(nums5, 100000, target5, result5);
-    auto stop5 = high_resolution_clock::now();
-    auto duration5 = duration_cast<nanoseconds>(stop5 - start5);
-    cout << "Execution time for 100000: " << duration5.count() << " ns" << endl;
 
     
     cout << endl;
@@ -505,15 +443,5 @@ int main() {
     auto duration_op4 = duration_cast<nanoseconds>(stop_op4 - start_op4);
     cout << "Execution time for 10000: " << duration_op4.count() << " ns" << endl;
 
-    //100000 items - optimal
-    int nums_op5[100000];
-    bool map5[100000];
-    int target_op5 = 50000;
-        placeNumbers(nums_op5, 100000,24999, 24999, 25001, 25001, target_op5);        
-    auto start_op5 = high_resolution_clock::now();
-        initializeMap(map5, 100000);
-        twoSumOptimal(nums_op5, 100000, target_op5, map5);
-    auto stop_op5 = high_resolution_clock::now();
-    auto duration_op5 = duration_cast<nanoseconds>(stop_op5 - start_op5);
-    cout << "Execution time for 10000: " << duration_op5.count() << " ns" << endl;
+
 }
