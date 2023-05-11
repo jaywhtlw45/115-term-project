@@ -59,7 +59,7 @@ long clock(int* array, int size) {
     auto start = high_resolution_clock::now();
     quickSort(array, 0, (size - 1));
     auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<nanoseconds>(stop - start);
+    auto duration = duration_cast<microseconds>(stop - start);
     long clockTime = duration.count();
     
     return clockTime;
@@ -100,7 +100,7 @@ long clockBestCase(int* array, int size) {
     auto start = high_resolution_clock::now();
     quickSortBestCase(array, 0, (size - 1));
     auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<nanoseconds>(stop - start);
+    auto duration = duration_cast<microseconds>(stop - start);
     long clockTime = duration.count();
     
     return clockTime;
@@ -155,13 +155,13 @@ void runSort(ifstream & txtFile, string fileName, int size) {
     }
     // Output the best case results
     cout << size << " Elements:" << endl;
-    cout << "\tBest Case:    : " << sumBest / 10 << " nanoseconds" << endl;
+    cout << "\tBest Case:    : " << sumBest / 10 << " microseconds" << endl;
     
     // Output the worst case results
-    cout << "\tWorst Case:   : " << sumWorst / 10 << " nanoseconds" << endl;
+    cout << "\tWorst Case:   : " << sumWorst / 10 << " microseconds" << endl;
     
     // Output the avg case results
-    cout << "\tAverage Case: : " << size << sumAvg / 10 << " nanoseconds" << endl;
+    cout << "\tAverage Case: : " << size << sumAvg / 10 << " microseconds" << endl;
     cout << endl;
     
     delete[] bestCase;
