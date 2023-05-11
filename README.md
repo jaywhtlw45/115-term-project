@@ -15,7 +15,7 @@ The goal here is to implement and analyze various sorting algorithms, and how th
 ### Operating System
 PREFFERED OS: Linux or MacOs
 
-Note that the experiments were done using Linux, which is the preferred operating system for running the algorithms. We noticed that Quick Sort, Couting Sort, and TwoSum do not run on Windows 11. All files will run on Linux and MacOS.
+Note that the experiments were done using Linux, which is the preferred operating system for running the algorithms. We noticed that Quick Sort, Counting Sort, and TwoSum do not run on Windows 11. All files will run on Linux and MacOS.
 
 ## Executable Shortcuts
 
