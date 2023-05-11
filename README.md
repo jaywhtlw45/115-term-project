@@ -12,32 +12,26 @@ The goal here is to implement and analyze various sorting algorithms, and how th
 + Radix sort
 
 ---
-### Running Application
-To use, navigate to home directory of the project and then compile with the following command:
-> make
+### Operating System
+PREFFERED OS: Linux or MacOs
 
-Then, navigate to desired sorting algorithm folder, and execute file. 
+Note that the experiments were done using Linux, which is the preferred operating system for running the algorithms. We noticed that Quick Sort, Couting Sort, and TwoSum do not run on Windows 11. All files will run on Linux and MacOS.
 
-###### Executable Shortcuts
+## Executable Shortcuts
 
 To ensure ease of use, here are the executable names per folder:
 
 | Sort        | Filename                 |
 | ----------- | ------------------------ |
 | Insertion   | ./insertionSortMergeSort |
-| Selection   | ./selectionSort          |
+| Selection   | ./quickSortSelectionSort |
 | Bubble      | ./heapSortBubbleSort     |
 | Merge       | ./insertionSortMergeSort |
-| Quick       | ./quickSort              |
+| Quick       | ./quickSortSelectionSort |
 | Heap        | ./heapSortBubbleSort     |
-| Counting    | ./countSort              |
-| Radix       | ./radixSort              |
+| Counting    | ./countSortRadixSort     |
+| Radix       | ./countSortRadixSort     |
 * Note: add ".exe" to executables if using Windows 10/11
-
-In order to remove executables, use the following command:
-> make clean
-
-Note that the experiments were done using Linux, which is the preferred operating system for running the algorithms. We noticed that Quick Sort and Couting Sort tend to hang after testing 10,000 elements specificially on Windows, but runs well on both Linux and MacOS.
 
 ---
 ### Directories
